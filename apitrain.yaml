@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: API de Entrenamientos Deportivos
+  description: API para gestionar entrenamientos deportivos, incluyendo entrenadores, deportistas y sesiones de entrenamiento.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+    description: Servidor local
+paths:
+  /trainers:
+    get:
+      summary: Listar entrenadores
+      description: Devuelve una lista de todos los entrenadores.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trainer'
+    post:
+      summary: Crear entrenador
+      description: Crea un nuevo entrenador.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trainer'
+      responses:
+        '201':
+          description: Entrenador creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+
+  /trainers/{Id}:
+    get:
+      summary: Obtiene los detalles de un entrenador
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles del entrenador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+    put:
+      summary: Actualiza los datos de un entrenador
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trainer'
+      responses:
+        '200':
+          description: Entrenador actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+    delete:
+      summary: Elimina un entrenador
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Entrenador eliminado correctamente
+
+components:
+  schemas:
+    Trainer:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        especialidad:
+          type: string
+        experiencia:
+          type: integer
+      required:
+        - nombre
+        - especialidad
