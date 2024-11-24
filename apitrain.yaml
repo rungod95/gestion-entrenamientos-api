@@ -290,6 +290,81 @@ paths:
              $ref: '#/components/responses/BadRequest'
             '500':
               $ref: '#/components/responses/InternalServerError'
+ /trainings/{id}:
+      get:
+        tags:
+          - trainings
+        summary: Obtener un entrenamiento por ID
+        description: Devuelve los detalles de un entrenamiento específico.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenamiento
+        responses:
+          '200':
+            description: Detalles del entrenamiento
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Training'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      put:
+        tags:
+          - trainings
+        summary: Actualizar un entrenamiento
+        description: Permite actualizar todos los datos de un entrenamiento existente.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenamiento a actualizar
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        responses:
+          '200':
+            description: Entrenamiento actualizado correctamente
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Training'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      delete:
+        tags:
+          - trainings
+        summary: Eliminar un entrenamiento
+        description: Elimina un entrenamiento existente por su ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenamiento a eliminar
+        responses:
+          '204':
+            description: Entrenamiento eliminado correctamente
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+
  /events:
         get:
           tags:
@@ -329,6 +404,80 @@ paths:
                   $ref: '#/components/responses/BadRequest'
             '500':
                   $ref: '#/components/responses/InternalServerError'
+ /events/{id}:
+   get:
+     tags:
+       - events
+     summary: Obtener un evento por ID
+     description: Devuelve los detalles de un evento específico.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único del evento
+     responses:
+       '200':
+         description: Detalles del evento
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Event'
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
+   put:
+     tags:
+       - events
+     summary: Actualizar un evento
+     description: Permite actualizar todos los datos de un evento existente.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único del evento a actualizar
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             $ref: '#/components/schemas/Event'
+     responses:
+       '200':
+         description: Evento actualizado correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Event'
+       '400':
+         $ref: '#/components/responses/BadRequest'
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
+   delete:
+     tags:
+       - events
+     summary: Eliminar un evento
+     description: Elimina un evento existente por su ID.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único del evento a eliminar
+     responses:
+       '204':
+         description: Evento eliminado correctamente
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
 
 
  /facilities:
@@ -370,6 +519,80 @@ paths:
               $ref: '#/components/responses/BadRequest'
            '500':
                $ref: '#/components/responses/InternalServerError'
+ /facilities/{id}:
+   get:
+     tags:
+       - facilities
+     summary: Obtener una instalación deportiva por ID
+     description: Devuelve los detalles de una instalación específica.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único de la instalación
+     responses:
+       '200':
+         description: Detalles de la instalación
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Facility'
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
+   put:
+     tags:
+       - facilities
+     summary: Actualizar una instalación deportiva
+     description: Permite actualizar todos los datos de una instalación existente.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único de la instalación a actualizar
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             $ref: '#/components/schemas/Facility'
+     responses:
+       '200':
+         description: Instalación deportiva actualizada correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Facility'
+       '400':
+         $ref: '#/components/responses/BadRequest'
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
+   delete:
+     tags:
+       - facilities
+     summary: Eliminar una instalación deportiva
+     description: Elimina una instalación existente por su ID.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único de la instalación a eliminar
+     responses:
+       '204':
+         description: Instalación eliminada correctamente
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
 
 components:
   schemas:
