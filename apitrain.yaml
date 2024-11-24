@@ -22,46 +22,121 @@ tags:
     description: Operaciones relacionadas con instalaciones deportivas
 
 paths:
-  /trainers:
-    get:
-      tags:
-        - trainers
-      summary: Listar entrenadores
-      description: Devuelve una lista de todos los entrenadores registrados.
-      responses:
-        '200':
-          description: Lista de entrenadores
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Trainer'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-    post:
-      tags:
-        - trainers
-      summary: Crear entrenador
-      description: Crea un nuevo entrenador.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Trainer'
-      responses:
-        '201':
-          description: Entrenador creado correctamente
+ /trainers:
+   get:
+        tags:
+          - trainers
+        summary: Listar entrenadores
+        description: Devuelve una lista de todos los entrenadores registrados.
+        responses:
+          '200':
+            description: Lista de entrenadores
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Trainer'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+   post:
+        tags:
+          - trainers
+        summary: Crear entrenador
+        description: Crea un nuevo entrenador.
+        requestBody:
+          required: true
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Trainer'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /athletes:
+        responses:
+          '201':
+            description: Entrenador creado correctamente
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Trainer'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+ /trainers/{id}:
+   get:
+        tags:
+          - trainers
+        summary: Obtener un entrenador por ID
+        description: Devuelve los detalles de un entrenador específico.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenador
+        responses:
+          '200':
+            description: Detalles del entrenador
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Trainer'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+   put:
+        tags:
+          - trainers
+        summary: Actualizar un entrenador
+        description: Permite actualizar todos los datos de un entrenador existente.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenador a actualizar
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+        responses:
+          '200':
+            description: Entrenador actualizado correctamente
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Trainer'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+   delete:
+        tags:
+          - trainers
+        summary: Eliminar un entrenador
+        description: Elimina un entrenador existente por su ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenador a eliminar
+        responses:
+          '204':
+            description: Entrenador eliminado correctamente
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+
+ /athletes:
     get:
       tags:
         - athletes
@@ -100,125 +175,201 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /trainings:
-    get:
-      tags:
-        - trainings
-      summary: Listar entrenamientos
-      description: Devuelve una lista de entrenamientos registrados.
-      responses:
-        '200':
-          description: Lista de entrenamientos
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Training'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-    post:
-      tags:
-        - trainings
-      summary: Crear entrenamiento
-      description: Crea un nuevo entrenamiento.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Training'
-      responses:
-        '201':
-          description: Entrenamiento creado correctamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Training'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /events:
-      get:
+
+ /athletes/{id}:
+       get:
         tags:
-          - events
-        summary: Listar eventos
-        description: Devuelve una lista de todos los eventos registrados.
+            - athletes
+        summary: Obtener un deportista por ID
+        description: Devuelve los detalles de un deportista específico.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+                type: integer
+                description: ID único del deportista
         responses:
           '200':
-            description: Lista de eventos
+            description: Detalles del deportista
+            content:
+              application/json:
+                schema:
+                 $ref: '#/components/schemas/Athlete'
+          '404':
+                 $ref: '#/components/responses/NotFound'
+          '500':
+                $ref: '#/components/responses/InternalServerError'
+       put:
+        tags:
+            - athletes
+        summary: Actualizar un deportista
+        description: Permite actualizar todos los datos de un deportista existente.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+                type: integer
+                description: ID único del deportista a actualizar
+        requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Athlete'
+        responses:
+            '200':
+              description: Deportista actualizado correctamente
+              content:
+                application/json:
+                 schema:
+                  $ref: '#/components/schemas/Athlete'
+            '400':
+                $ref: '#/components/responses/BadRequest'
+            '404':
+                $ref: '#/components/responses/NotFound'
+            '500':
+                $ref: '#/components/responses/InternalServerError'
+       delete:
+          tags:
+            - athletes
+          summary: Eliminar un deportista
+          description: Elimina un deportista existente por su ID.
+          parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+                type: integer
+                description: ID único del deportista a eliminar
+          responses:
+            '204':
+             description: Deportista eliminado correctamente
+            '404':
+              $ref: '#/components/responses/NotFound'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+
+ /trainings:
+      get:
+        tags:
+          - trainings
+        summary: Listar entrenamientos
+        description: Devuelve una lista de entrenamientos registrados.
+        responses:
+          '200':
+            description: Lista de entrenamientos
             content:
               application/json:
                 schema:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Event'
+                    $ref: '#/components/schemas/Training'
           '500':
             $ref: '#/components/responses/InternalServerError'
       post:
         tags:
-          - events
-        summary: Crear evento
-        description: Crea un nuevo evento.
+        - trainings
+        summary: Crear entrenamiento
+        description: Crea un nuevo entrenamiento.
         requestBody:
           required: true
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Event'
+             schema:
+               $ref: '#/components/schemas/Training'
         responses:
-          '201':
-            description: Evento creado correctamente
+            '201':
+              description: Entrenamiento creado correctamente
+              content:
+                application/json:
+                 schema:
+                  $ref: '#/components/schemas/Training'
+            '400':
+             $ref: '#/components/responses/BadRequest'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+ /events:
+        get:
+          tags:
+          - events
+          summary: Listar eventos
+          description: Devuelve una lista de todos los eventos registrados.
+          responses:
+            '200':
+              description: Lista de eventos
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+        post:
+          tags:
+          - events
+          summary: Crear evento
+          description: Crea un nuevo evento.
+          requestBody:
+            required: true
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/Event'
-          '400':
-            $ref: '#/components/responses/BadRequest'
-          '500':
-            $ref: '#/components/responses/InternalServerError'
+                    $ref: '#/components/schemas/Event'
+          responses:
+            '201':
+              description: Evento creado correctamente
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Event'
+            '400':
+                  $ref: '#/components/responses/BadRequest'
+            '500':
+                  $ref: '#/components/responses/InternalServerError'
 
 
-  /facilities:
-    get:
-      tags:
-        - facilities
-      summary: Listar instalaciones deportivas
-      description: Devuelve una lista de todas las instalaciones deportivas registradas.
-      responses:
-        '200':
-          description: Lista de instalaciones deportivas
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Facility'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-    post:
-      tags:
-        - facilities
-      summary: Crear instalación deportiva
-      description: Crea una nueva instalación deportiva.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Facility'
-      responses:
-        '201':
-          description: Instalación deportiva creada correctamente
-          content:
-            application/json:
+ /facilities:
+        get:
+          tags:
+          - facilities
+          summary: Listar instalaciones deportivas
+          description: Devuelve una lista de todas las instalaciones deportivas registradas.
+          responses:
+            '200':
+              description: Lista de instalaciones deportivas
+              content:
+                application/json:
+                 schema:
+                  type: array
+                  items:
+                   $ref: '#/components/schemas/Facility'
+            '500':
+                  $ref: '#/components/responses/InternalServerError'
+        post:
+          tags:
+          - facilities
+          summary: Crear instalación deportiva
+          description: Crea una nueva instalación deportiva.
+          requestBody:
+            required: true
+            content:
+                application/json:
+                 schema:
+                    $ref: '#/components/schemas/Facility'
+          responses:
+           '201':
+            description: Instalación deportiva creada correctamente
+            content:
+             application/json:
               schema:
                 $ref: '#/components/schemas/Facility'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
+           '400':
+              $ref: '#/components/responses/BadRequest'
+           '500':
+               $ref: '#/components/responses/InternalServerError'
 
 components:
   schemas:
