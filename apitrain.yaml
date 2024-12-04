@@ -137,44 +137,44 @@ paths:
             $ref: '#/components/responses/InternalServerError'
 
  /athletes:
-    get:
-      tags:
-        - athletes
-      summary: Listar deportistas
-      description: Devuelve una lista de todos los deportistas registrados.
-      responses:
-        '200':
-          description: Lista de deportistas
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Athlete'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-    post:
-      tags:
-        - athletes
-      summary: Crear deportista
-      description: Crea un nuevo deportista.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Athlete'
-      responses:
-        '201':
-          description: Deportista creado correctamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Athlete'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
+   get:
+     tags:
+       - athletes
+     summary: Listar deportistas
+     description: Devuelve una lista de deportistas registrados. Permite aplicar filtros por edad, categoría y altura mínima.
+     parameters:
+       - name: edad
+         in: query
+         required: false
+         schema:
+           type: integer
+         description: Filtrar deportistas con edad igual o mayor al valor indicado.
+       - name: categoria
+         in: query
+         required: false
+         schema:
+           type: string
+         description: Filtrar deportistas por categoría exacta (ej. Amateur, Profesional).
+       - name: altura
+         in: query
+         required: false
+         schema:
+           type: number
+           format: float
+         description: Filtrar deportistas con una altura mínima.
+     responses:
+       '200':
+         description: Lista de deportistas
+         content:
+           application/json:
+             schema:
+               type: array
+               items:
+                 $ref: '#/components/schemas/Athlete'
+       '400':
+         $ref: '#/components/responses/BadRequest'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
 
  /athletes/{id}:
        get:
@@ -252,44 +252,44 @@ paths:
               $ref: '#/components/responses/InternalServerError'
 
  /trainings:
-      get:
-        tags:
-          - trainings
-        summary: Listar entrenamientos
-        description: Devuelve una lista de entrenamientos registrados.
-        responses:
-          '200':
-            description: Lista de entrenamientos
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Training'
-          '500':
-            $ref: '#/components/responses/InternalServerError'
-      post:
-        tags:
-        - trainings
-        summary: Crear entrenamiento
-        description: Crea un nuevo entrenamiento.
-        requestBody:
-          required: true
-          content:
-            application/json:
+   get:
+     tags:
+       - trainings
+     summary: Listar entrenamientos
+     description: Devuelve una lista de entrenamientos registrados. Permite aplicar filtros por nivel, tipo y fecha mínima.
+     parameters:
+       - name: nivel
+         in: query
+         required: false
+         schema:
+           type: string
+         description: Filtrar entrenamientos por nivel (ej. Básico, Intermedio, Avanzado).
+       - name: tipo
+         in: query
+         required: false
+         schema:
+           type: string
+         description: Filtrar entrenamientos por tipo (ej. Cardio, Fuerza).
+       - name: fecha
+         in: query
+         required: false
+         schema:
+           type: string
+           format: date
+         description: Filtrar entrenamientos realizados después de la fecha indicada.
+     responses:
+       '200':
+         description: Lista de entrenamientos
+         content:
+           application/json:
              schema:
-               $ref: '#/components/schemas/Training'
-        responses:
-            '201':
-              description: Entrenamiento creado correctamente
-              content:
-                application/json:
-                 schema:
-                  $ref: '#/components/schemas/Training'
-            '400':
-             $ref: '#/components/responses/BadRequest'
-            '500':
-              $ref: '#/components/responses/InternalServerError'
+               type: array
+               items:
+                 $ref: '#/components/schemas/Training'
+       '400':
+         $ref: '#/components/responses/BadRequest'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
  /trainings/{id}:
       get:
         tags:

@@ -1,20 +1,37 @@
 package com.example.Apitrain.domain;
-
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDate;
 
-@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "athletes") // Esto mapea la entidad con el nombre "athletes" en la base de datos
 public class Athlete {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false) // Marca como requerido
+    private String nombre;
+
+    @Column(nullable = false) // Marca como requerido
+    private String categoria;
+
     @Column
-    private String name;
+    private Integer edad;
+
     @Column
-    private int age;
-    @Column
-    private String category;
-    @ManyToMany(mappedBy = "athletes")
-    private List<Train> trains;
+    private Float altura;
+
+    @Column(name = "fecha_registro") // Mapea "fechaRegistro" a "fecha_registro" en la tabla
+    private LocalDate fechaRegistro;
+
+    @ManyToOne
+    @JoinColumn(name = "trainer_id") // Configura la relación con la tabla "Trainer"
+    private Trainer trainer;
 }
