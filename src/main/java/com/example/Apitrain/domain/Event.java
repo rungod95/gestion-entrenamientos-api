@@ -26,7 +26,6 @@ public class Event {
 
     @Column
     private Integer capacidad;
-
     @Column(name = "fecha_evento")
     private LocalDate fechaEvento;
 
