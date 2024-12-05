@@ -28,8 +28,8 @@ public class Facility {
     @Column
     private Integer capacidad;
 
-    @Column(name = "abierto_24h")
-    private Boolean abierto24h;
+    @Column(name = "horario")
+    private String horario;
 
     @Column(name = "fecha_apertura")
     private LocalDate fechaApertura;
