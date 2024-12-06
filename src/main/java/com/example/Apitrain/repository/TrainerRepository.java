@@ -5,6 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.Apitrain.domain.Trainer;
 
+import java.util.List;
+
 @Repository
 public interface TrainerRepository extends JpaRepository<Trainer, Long> {
+
+    List<Trainer> findByNombreContainingAndEspecialidadContainingAndExperienciaGreaterThanEqual(String nombre, String especialidad, Integer experiencia);
+
     }

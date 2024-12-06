@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping("/trainings")
 public class TrainingController {
 
-        @Autowired
+    @Autowired
         private TrainingService trainingService;
 
-        @GetMapping
+    @GetMapping
         public List<Training> getAllTrainings() {
             return trainingService.getAllTrainings();
         }
@@ -34,8 +34,16 @@ public class TrainingController {
         return trainingService.updateTraining(id, updatedTraining);
     }
 
-        @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
         public void deleteTraining(@PathVariable Long id) {
             trainingService.deleteTraining(id);
         }
+
+    @GetMapping("/filter")
+    public List<Training> filterTrainings(
+            @RequestParam(required = false, defaultValue = "") String tipo,
+            @RequestParam(required = false, defaultValue = "") String nivel,
+            @RequestParam(required = false, defaultValue = "0") Integer duracion) {
+        return trainingService.filterTrainings(tipo, nivel, duracion);
+    }
 }

@@ -41,4 +41,8 @@ public class FacilityService {
         Facility facility = getFacilityById(id);
         facilityRepository.deleteById(id);
     }
+
+    public List<Facility> filterFacilities(String nombre, String tipo, Integer capacidad) {
+        return facilityRepository.findByNombreContainingAndTipoContainingAndCapacidadGreaterThanEqual(nombre, tipo, capacidad);
+    }
 }

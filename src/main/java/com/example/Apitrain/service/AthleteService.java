@@ -39,4 +39,8 @@ public class AthleteService {
     public void deleteAthlete(Long id) {
         athleteRepository.deleteById(id);
     }
+
+    public List<Athlete> filterAthletes(String nombre, String categoria, Integer edad) {
+        return athleteRepository.findByNombreContainingAndCategoriaContainingAndEdadGreaterThanEqual(nombre, categoria, edad);
+    }
 }

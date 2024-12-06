@@ -39,4 +39,12 @@ public class TrainerController {
     public void deleteTrainer(@PathVariable Long id) {
         trainerService.deleteTrainer(id);
     }
+
+    @GetMapping("/filter")
+    public List<Trainer> filterTrainers(
+            @RequestParam(required = false, defaultValue = "") String nombre,
+            @RequestParam(required = false, defaultValue = "") String especialidad,
+            @RequestParam(required = false, defaultValue = "0") Integer experiencia) {
+        return trainerService.filterTrainers(nombre, especialidad, experiencia);
+    }
 }

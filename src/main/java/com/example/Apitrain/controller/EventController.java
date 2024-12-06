@@ -38,4 +38,13 @@ public class EventController {
         public void deleteEvent(@PathVariable Long id) {
             eventService.deleteEvent(id);
         }
+
+        @GetMapping("/filter")
+        public List<Event> filterEvents(
+                @RequestParam(required = false, defaultValue = "") String nombre,
+                @RequestParam(required = false, defaultValue = "") String ubicacion,
+                @RequestParam(required = false, defaultValue = "0") Integer capacidad) {
+            return eventService.filterEvents(nombre, ubicacion, capacidad);
+        }
+
 }

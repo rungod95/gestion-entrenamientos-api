@@ -41,4 +41,8 @@ public class EventService {
             Event event = getEventById(id);
             eventRepository.deleteById(id);
         }
+
+        public List<Event> filterEvents(String nombre, String ubicacion, Integer capacidad) {
+            return eventRepository.findByNombreContainingAndUbicacionContainingAndCapacidadGreaterThanEqual(nombre, ubicacion, capacidad);
+        }
 }

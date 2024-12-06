@@ -5,6 +5,7 @@ import com.example.Apitrain.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
@@ -36,5 +37,13 @@ public class AthleteController {
     @DeleteMapping("/{id}")
     public void deleteAthlete(@PathVariable Long id) {
         athleteService.deleteAthlete(id);
+    }
+
+    @GetMapping("/filter")
+    public List<Athlete> filterAthletes(
+            @RequestParam(required = false, defaultValue = "") String nombre,
+            @RequestParam(required = false, defaultValue = "") String categoria,
+            @RequestParam(required = false, defaultValue = "0") Integer edad) {
+        return athleteService.filterAthletes(nombre, categoria, edad);
     }
 }

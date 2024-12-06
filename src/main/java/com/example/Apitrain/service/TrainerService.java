@@ -41,4 +41,7 @@ public class TrainerService {
         Trainer trainer = getTrainerById(id);
         trainerRepository.deleteById(id);
     }
+    public List<Trainer> filterTrainers(String nombre, String especialidad, Integer experiencia) {
+        return trainerRepository.findByNombreContainingAndEspecialidadContainingAndExperienciaGreaterThanEqual(nombre, especialidad, experiencia);
+    }
 }

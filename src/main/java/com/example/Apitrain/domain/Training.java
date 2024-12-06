@@ -17,16 +17,21 @@ public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String Tipo;
-    @Column(nullable = false)
-    private String Nivel;
-    @Column
-    private Integer Duracion;// duration en minutos
-    @Column
-    private Boolean Completado;
-    @Column
-    private LocalDate Fecha;
+
+    @Column(name = "tipo")
+    private String tipo; // Cambiado a minúscula
+
+    @Column(name = "nivel", nullable = false)
+    private String nivel; // Cambiado a minúscula
+
+    @Column(name = "duracion") // duración en minutos
+    private Integer duracion; // Cambiado a minúscula
+
+    @Column(name = "completado")
+    private Boolean completado;
+
+    @Column(name = "fecha")
+    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "trainer_id")
@@ -34,10 +39,9 @@ public class Training {
 
     @ManyToMany
     @JoinTable(
-        name = "training_athletes",
-        joinColumns = @JoinColumn(name = "training_id"),
-        inverseJoinColumns = @JoinColumn(name = "athlete_id")
+            name = "training_athletes",
+            joinColumns = @JoinColumn(name = "training_id"),
+            inverseJoinColumns = @JoinColumn(name = "athlete_id")
     )
     private List<Athlete> athletes;
-    // getters y setters
 }

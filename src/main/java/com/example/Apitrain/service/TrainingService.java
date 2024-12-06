@@ -40,4 +40,9 @@ public class TrainingService {
         public void deleteTraining(Long id) {
             trainingRepository.deleteById(id);
         }
+
+    public List<Training> filterTrainings(String tipo, String nivel, Integer duracion) {
+        return trainingRepository.findByTipoContainingAndNivelContainingAndDuracionGreaterThanEqual(
+                tipo, nivel, duracion);
+        }
 }

@@ -38,4 +38,12 @@ public class FacilityController{
         public void deleteFacility(@PathVariable Long id) {
             facilityService.deleteFacility(id);
         }
+
+        @GetMapping("/filter")
+        public List<Facility> filterFacilities(
+                @RequestParam(required = false, defaultValue = "") String nombre,
+                @RequestParam(required = false, defaultValue = "") String tipo,
+                @RequestParam(required = false, defaultValue = "0") Integer capacidad) {
+            return facilityService.filterFacilities(nombre, tipo, capacidad);
+        }
 }
