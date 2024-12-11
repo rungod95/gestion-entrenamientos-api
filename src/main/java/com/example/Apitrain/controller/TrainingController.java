@@ -1,5 +1,6 @@
 package com.example.Apitrain.controller;
 
+import com.example.Apitrain.domain.dto.Trainingindto;
 import org.springframework.web.bind.annotation.*;
 import com.example.Apitrain.domain.Training;
 import com.example.Apitrain.service.TrainingService;
@@ -28,6 +29,21 @@ public class TrainingController {
         public Training createTraining(@RequestBody Training training) {
             return trainingService.createTraining(training);
         }
+    @PostMapping("/dto")
+    public Training createTraining(@RequestBody Trainingindto trainingDto) {
+        // Convertir el DTO a la entidad
+        Training training = new Training();
+        training.setTipo(trainingDto.getTipo());
+        training.setNivel(trainingDto.getNivel());
+        training.setDuracion(trainingDto.getDuracion());
+        training.setCompletado(trainingDto.getCompletado());
+        training.setFecha(trainingDto.getFecha());
+        training.setLatitude(trainingDto.getLatitude());
+        training.setLongitude(trainingDto.getLongitude());
+
+        // Delegar la creación al servicio
+        return trainingService.createTraining(training);
+    }
 
     @PutMapping("/{id}")
     public Training updateTraining(@PathVariable Long id, @RequestBody Training updatedTraining) {

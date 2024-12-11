@@ -27,15 +27,17 @@ public class TrainingService {
             return trainingRepository.save(training);
         }
 
-        public Training updateTraining(Long id, Training updatedTraining) {
-            Training training = getTrainingById(id);
-            training.setTipo(updatedTraining.getTipo());
-            training.setNivel(updatedTraining.getNivel());
-            training.setDuracion(updatedTraining.getDuracion());
-            training.setFecha(updatedTraining.getFecha());
-            training.setCompletado(updatedTraining.getCompletado());
-            return trainingRepository.save(training);
-        }
+    public Training updateTraining(Long id, Training updatedTraining) {
+        Training training = getTrainingById(id);
+        training.setTipo(updatedTraining.getTipo());
+        training.setNivel(updatedTraining.getNivel());
+        training.setDuracion(updatedTraining.getDuracion());
+        training.setFecha(updatedTraining.getFecha());
+        training.setCompletado(updatedTraining.getCompletado());
+        training.setLatitude(updatedTraining.getLatitude());
+        training.setLongitude(updatedTraining.getLongitude());
+        return trainingRepository.save(training);
+    }
 
         public void deleteTraining(Long id) {
             trainingRepository.deleteById(id);

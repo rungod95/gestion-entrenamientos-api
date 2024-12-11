@@ -19,13 +19,13 @@ public class Training {
     private Long id;
 
     @Column(name = "tipo")
-    private String tipo; // Cambiado a minúscula
+    private String tipo;
 
     @Column(name = "nivel", nullable = false)
-    private String nivel; // Cambiado a minúscula
+    private String nivel;
 
-    @Column(name = "duracion") // duración en minutos
-    private Integer duracion; // Cambiado a minúscula
+    @Column(name = "duracion")
+    private Integer duracion;
 
     @Column(name = "completado")
     private Boolean completado;
@@ -36,6 +36,12 @@ public class Training {
     @ManyToOne
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
+
+    @Column
+    private Double latitude;
+
+    @Column
+    private Double longitude;
 
     @ManyToMany
     @JoinTable(

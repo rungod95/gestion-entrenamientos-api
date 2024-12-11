@@ -1,3 +1,5 @@
+
+
 -- Datos para la tabla ATHLETES
 INSERT INTO athletes (id, nombre, categoria, edad, altura, fecha_registro) VALUES
                                                                                (1, 'Carlos López', 'Profesional', 28, 1.85, '2023-01-10'),
@@ -14,10 +16,11 @@ INSERT INTO trainers (id, nombre, especialidad, experiencia, fecha_ingreso, acti
                                                                                         (4, 'Carmen Muñoz', 'Resistencia', 6, '2020-01-05', false);
 
 -- Datos para la tabla TRAININGS
-INSERT INTO trainings (id, tipo, nivel, duracion, fecha, completado) VALUES
-                                                                        (1, 'Cardio', 'Intermedio', 45, '2023-06-10', true),
-                                                                        (2, 'Fuerza', 'Avanzado', 60, '2023-06-12', false),
-                                                                        (3, 'Flexibilidad', 'Básico', 30, '2023-06-15', true);
+-- Datos para la tabla TRAININGS
+INSERT INTO trainings (id, tipo, nivel, duracion, fecha, completado, latitude, longitude) VALUES
+                                                                                              (1, 'Cardio', 'Intermedio', 45, '2023-06-10', true, 40.712776, -74.005974),
+                                                                                              (2, 'Fuerza', 'Avanzado', 60, '2023-06-12', false, 34.052235, -118.243683),
+                                                                                              (3, 'Flexibilidad', 'Básico', 30, '2023-06-15', true, 51.507351, -0.127758);
 
 -- Datos para la tabla EVENTS
 INSERT INTO events (id, nombre, ubicacion, capacidad, fecha_evento) VALUES
