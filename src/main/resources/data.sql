@@ -15,7 +15,7 @@ INSERT INTO trainers (id, nombre, especialidad, experiencia, fecha_ingreso, acti
                                                                                         (3, 'Diego Torres', 'Flexibilidad', 12, '2010-07-20', true),
                                                                                         (4, 'Carmen Muñoz', 'Resistencia', 6, '2020-01-05', false);
 
--- Datos para la tabla TRAININGS
+
 -- Datos para la tabla TRAININGS
 INSERT INTO trainings (id, tipo, nivel, duracion, fecha, completado, latitude, longitude) VALUES
                                                                                               (1, 'Cardio', 'Intermedio', 45, '2023-06-10', true, 40.712776, -74.005974),

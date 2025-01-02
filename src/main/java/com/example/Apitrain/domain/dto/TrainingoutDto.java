@@ -19,5 +19,6 @@ public class TrainingoutDto {
     private String ubicacion;
     private Integer capacidad;
     private LocalDate fechaEvento;
+    private boolean completado;
 
 }

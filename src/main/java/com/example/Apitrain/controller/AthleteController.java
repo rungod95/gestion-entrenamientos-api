@@ -1,6 +1,7 @@
 package com.example.Apitrain.controller;
 
 import com.example.Apitrain.domain.Athlete;
+import com.example.Apitrain.domain.dto.AthleteInDto;
 import com.example.Apitrain.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +46,20 @@ public class AthleteController {
             @RequestParam(required = false, defaultValue = "") String categoria,
             @RequestParam(required = false, defaultValue = "0") Integer edad) {
         return athleteService.filterAthletes(nombre, categoria, edad);
+    }
+
+    @PostMapping("/dto")
+    public Athlete createAthlete(@RequestBody AthleteInDto athleteDto) {
+        // Convertir el DTO a la entidad
+        Athlete athlete = new Athlete();
+        athlete.setNombre(athleteDto.getNombre());
+        athlete.setCategoria(athleteDto.getCategoria());
+        athlete.setEdad(athleteDto.getEdad());
+        athlete.setAltura(athleteDto.getAltura());
+
+
+        // Delegar la creación al servicio
+        return athleteService.createAthlete(athlete);
+
     }
 }
