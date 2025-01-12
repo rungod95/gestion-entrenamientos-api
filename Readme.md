@@ -12,7 +12,7 @@ Esta API permite gestionar instalaciones, eventos, entrenadores, y más. Desarro
 
 1. Clona este repositorio:
 git clone [https://github.com/usuario/repo-api.git](https://github.com/rungod95/gestion-entrenamientos-api)
-2. Navega al directorio del proyecto:
+2. Navega al directorio del proyecto: cd repo-api
 
 3. Ejecuta el proyecto con Maven:
 mvn spring-boot:run
