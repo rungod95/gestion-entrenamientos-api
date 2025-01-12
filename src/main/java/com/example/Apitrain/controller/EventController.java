@@ -1,11 +1,14 @@
 package com.example.Apitrain.controller;
 
+import com.example.Apitrain.domain.Athlete;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.Apitrain.service.EventService;
 import com.example.Apitrain.domain.Event;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/events")
@@ -46,5 +49,13 @@ public class EventController {
                 @RequestParam(required = false, defaultValue = "0") Integer capacidad) {
             return eventService.filterEvents(nombre, ubicacion, capacidad);
         }
+    @PatchMapping("/{id}")
+    public ResponseEntity<Event> updatePartialEvent(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> updates) {
+        Event updatedEvent = eventService.updatePartial(id, updates);
+        return ResponseEntity.ok(updatedEvent);
+    }
+
 
 }

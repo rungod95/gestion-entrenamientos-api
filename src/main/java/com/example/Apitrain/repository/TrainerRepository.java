@@ -12,4 +12,5 @@ public interface TrainerRepository extends JpaRepository<Trainer, Long> {
 
     List<Trainer> findByNombreContainingAndEspecialidadContainingAndExperienciaGreaterThanEqual(String nombre, String especialidad, Integer experiencia);
 
+
     }

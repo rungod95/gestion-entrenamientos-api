@@ -1,11 +1,13 @@
 package com.example.Apitrain.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Apitrain.service.TrainerService;
 import com.example.Apitrain.domain.Trainer;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/trainers")
@@ -47,4 +49,13 @@ public class TrainerController {
             @RequestParam(required = false, defaultValue = "0") Integer experiencia) {
         return trainerService.filterTrainers(nombre, especialidad, experiencia);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Trainer> updatePartialTrainer(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> updates) {
+        Trainer updatedTrainer = trainerService.updatePartial(id, updates);
+        return ResponseEntity.ok(updatedTrainer);
+    }
+
 }

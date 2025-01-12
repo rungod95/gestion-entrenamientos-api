@@ -1,12 +1,15 @@
 package com.example.Apitrain.controller;
 
+import com.example.Apitrain.domain.Athlete;
 import com.example.Apitrain.domain.dto.Trainingindto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Apitrain.domain.Training;
 import com.example.Apitrain.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/trainings")
@@ -61,5 +64,12 @@ public class TrainingController {
             @RequestParam(required = false, defaultValue = "") String nivel,
             @RequestParam(required = false, defaultValue = "0") Integer duracion) {
         return trainingService.filterTrainings(tipo, nivel, duracion);
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<Training> updatePartialTraining(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> updates) {
+        Training updatedTraining = trainingService.updatePartial(id, updates);
+        return ResponseEntity.ok(updatedTraining);
     }
 }

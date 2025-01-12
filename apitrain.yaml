@@ -39,6 +39,13 @@ paths:
                     $ref: '#/components/schemas/Trainer'
           '500':
             $ref: '#/components/responses/InternalServerError'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
+          '403':
+            $ref: '#/components/responses/ForbiddenError'
+        security:
+             - bearerAuth: []
+
    post:
         tags:
           - trainers
@@ -59,8 +66,15 @@ paths:
                   $ref: '#/components/schemas/Trainer'
           '400':
             $ref: '#/components/responses/BadRequest'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
+          '403':
+            $ref: '#/components/responses/ForbiddenError'
           '500':
             $ref: '#/components/responses/InternalServerError'
+        security:
+          - bearerAuth: [ ]
+
  /trainers/{id}:
    get:
         tags:
@@ -83,8 +97,14 @@ paths:
                   $ref: '#/components/schemas/Trainer'
           '404':
             $ref: '#/components/responses/NotFound'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
+          '403':
+            $ref: '#/components/responses/ForbiddenError'
           '500':
             $ref: '#/components/responses/InternalServerError'
+        security:
+          - bearerAuth: [ ]
    put:
         tags:
           - trainers
@@ -112,10 +132,17 @@ paths:
                   $ref: '#/components/schemas/Trainer'
           '400':
             $ref: '#/components/responses/BadRequest'
+          '403':
+            $ref: '#/components/responses/ForbiddenError'
           '404':
             $ref: '#/components/responses/NotFound'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
           '500':
             $ref: '#/components/responses/InternalServerError'
+        security:
+          - bearerAuth: [ ]
+
    delete:
         tags:
           - trainers
@@ -133,8 +160,53 @@ paths:
             description: Entrenador eliminado correctamente
           '404':
             $ref: '#/components/responses/NotFound'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
+          '403':
+            $ref: '#/components/responses/ForbiddenError'
           '500':
             $ref: '#/components/responses/InternalServerError'
+
+        security:
+          - bearerAuth: [ ]
+   patch:
+     tags:
+       - trainers
+     summary: Actualizar parcialmente un entrenador
+     description: Permite actualizar uno o más campos de un entrenador existente.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único del entrenador a actualizar
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             additionalProperties: true
+           example:
+             nombre: Juan Actualizado
+             experiencia: 8
+     responses:
+       '200':
+         description: Entrenador actualizado correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Trainer'
+       '404':
+         $ref: '#/components/responses/NotFound'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
+
+     security:
+        - bearerAuth: [ ]
 
  /athletes:
    get:
@@ -173,6 +245,30 @@ paths:
                  $ref: '#/components/schemas/Athlete'
        '400':
          $ref: '#/components/responses/BadRequest'
+
+       '500':
+         $ref: '#/components/responses/InternalServerError'
+   post:
+     tags:
+       - athletes
+     summary: Crear deportista
+     description: Crea un nuevo deportista en el sistema.
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             $ref: '#/components/schemas/Athlete'
+     responses:
+       '201':
+         description: Deportista creado correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Athlete'
+       '400':
+         $ref: '#/components/responses/BadRequest'
+
        '500':
          $ref: '#/components/responses/InternalServerError'
 
@@ -198,6 +294,7 @@ paths:
                  $ref: '#/components/schemas/Athlete'
           '404':
                  $ref: '#/components/responses/NotFound'
+
           '500':
                 $ref: '#/components/responses/InternalServerError'
        put:
@@ -227,10 +324,12 @@ paths:
                   $ref: '#/components/schemas/Athlete'
             '400':
                 $ref: '#/components/responses/BadRequest'
+
             '404':
                 $ref: '#/components/responses/NotFound'
             '500':
                 $ref: '#/components/responses/InternalServerError'
+
        delete:
           tags:
             - athletes
@@ -246,10 +345,43 @@ paths:
           responses:
             '204':
              description: Deportista eliminado correctamente
+
             '404':
               $ref: '#/components/responses/NotFound'
             '500':
               $ref: '#/components/responses/InternalServerError'
+       patch:
+         tags:
+           - athletes
+         summary: Actualizar parcialmente un atleta
+         description: Permite actualizar uno o más campos de un atleta existente.
+         parameters:
+           - name: id
+             in: path
+             required: true
+             schema:
+               type: integer
+               description: ID único del atleta a actualizar
+         requestBody:
+           required: true
+           content:
+             application/json:
+               schema:
+                 type: object
+                 additionalProperties: true
+               example:
+                 nombre: Jesús actualizado
+                 edad: 35
+         responses:
+           '200':
+             description: Atleta actualizado correctamente
+             content:
+               application/json:
+                 schema:
+                   $ref: '#/components/schemas/Athlete'
+
+           '404':
+             $ref: '#/components/responses/NotFound'
 
  /trainings:
    get:
@@ -288,8 +420,32 @@ paths:
                  $ref: '#/components/schemas/Training'
        '400':
          $ref: '#/components/responses/BadRequest'
+
        '500':
          $ref: '#/components/responses/InternalServerError'
+   post:
+     tags:
+       - trainings
+     summary: Crear entrenamiento
+     description: Crea un nuevo entrenamiento en el sistema.
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             $ref: '#/components/schemas/Training'
+     responses:
+       '201':
+         description: Entrenamiento creado correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Training'
+       '400':
+         $ref: '#/components/responses/BadRequest'
+       '500':
+         $ref: '#/components/responses/InternalServerError'
+
  /trainings/{id}:
       get:
         tags:
@@ -364,6 +520,37 @@ paths:
             $ref: '#/components/responses/NotFound'
           '500':
             $ref: '#/components/responses/InternalServerError'
+      patch:
+        tags:
+          - trainings
+        summary: Actualizar parcialmente un entrenamiento
+        description: Permite actualizar uno o más campos de un entrenamiento existente.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+              description: ID único del entrenamiento a actualizar
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                nivel: elevado
+                tipo: Fuerza
+        responses:
+          '200':
+            description: Entrenamiento actualizado correctamente
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Training'
+          '404':
+            $ref: '#/components/responses/NotFound'
 
  /events:
         get:
@@ -380,8 +567,15 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Event'
+            '401':
+              $ref: '#/components/responses/UnauthorizedError'
+            '403':
+                $ref: '#/components/responses/ForbiddenError'
             '500':
               $ref: '#/components/responses/InternalServerError'
+
+          security:
+                - bearerAuth: [ ]
         post:
           tags:
           - events
@@ -402,8 +596,14 @@ paths:
                     $ref: '#/components/schemas/Event'
             '400':
                   $ref: '#/components/responses/BadRequest'
+            '401':
+              $ref: '#/components/responses/UnauthorizedError'
+            '403':
+              $ref: '#/components/responses/ForbiddenError'
             '500':
                   $ref: '#/components/responses/InternalServerError'
+          security:
+          - bearerAuth: [ ]
  /events/{id}:
    get:
      tags:
@@ -426,8 +626,14 @@ paths:
                $ref: '#/components/schemas/Event'
        '404':
          $ref: '#/components/responses/NotFound'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
        '500':
          $ref: '#/components/responses/InternalServerError'
+     security:
+       - bearerAuth: [ ]
    put:
      tags:
        - events
@@ -455,10 +661,16 @@ paths:
                $ref: '#/components/schemas/Event'
        '400':
          $ref: '#/components/responses/BadRequest'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
        '404':
          $ref: '#/components/responses/NotFound'
        '500':
          $ref: '#/components/responses/InternalServerError'
+     security:
+       - bearerAuth: [ ]
    delete:
      tags:
        - events
@@ -474,12 +686,54 @@ paths:
      responses:
        '204':
          description: Evento eliminado correctamente
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
        '404':
          $ref: '#/components/responses/NotFound'
        '500':
          $ref: '#/components/responses/InternalServerError'
+     security:
+       - bearerAuth: [ ]
 
-
+   patch:
+     tags:
+       - events
+     summary: Actualizar parcialmente un evento
+     description: Permite actualizar uno o más campos de un evento existente.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único del evento a actualizar
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             additionalProperties: true
+           example:
+             nombre: JJOO
+             ubicacion: Tokio
+     responses:
+       '200':
+         description: Evento actualizado correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Event'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
+       '404':
+         $ref: '#/components/responses/NotFound'
+     security:
+       - bearerAuth: [ ]
  /facilities:
         get:
           tags:
@@ -495,8 +749,14 @@ paths:
                   type: array
                   items:
                    $ref: '#/components/schemas/Facility'
+            '401':
+              $ref: '#/components/responses/UnauthorizedError'
+            '403':
+              $ref: '#/components/responses/ForbiddenError'
             '500':
                   $ref: '#/components/responses/InternalServerError'
+          security:
+            - bearerAuth: [ ]
         post:
           tags:
           - facilities
@@ -517,8 +777,14 @@ paths:
                 $ref: '#/components/schemas/Facility'
            '400':
               $ref: '#/components/responses/BadRequest'
+           '401':
+             $ref: '#/components/responses/UnauthorizedError'
+           '403':
+             $ref: '#/components/responses/ForbiddenError'
            '500':
                $ref: '#/components/responses/InternalServerError'
+          security:
+            - bearerAuth: [ ]
  /facilities/{id}:
    get:
      tags:
@@ -539,10 +805,16 @@ paths:
            application/json:
              schema:
                $ref: '#/components/schemas/Facility'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
        '404':
          $ref: '#/components/responses/NotFound'
        '500':
          $ref: '#/components/responses/InternalServerError'
+     security:
+       - bearerAuth: [ ]
    put:
      tags:
        - facilities
@@ -570,10 +842,16 @@ paths:
                $ref: '#/components/schemas/Facility'
        '400':
          $ref: '#/components/responses/BadRequest'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
        '404':
          $ref: '#/components/responses/NotFound'
        '500':
          $ref: '#/components/responses/InternalServerError'
+     security:
+       - bearerAuth: [ ]
    delete:
      tags:
        - facilities
@@ -589,12 +867,95 @@ paths:
      responses:
        '204':
          description: Instalación eliminada correctamente
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
        '404':
          $ref: '#/components/responses/NotFound'
        '500':
          $ref: '#/components/responses/InternalServerError'
+     security:
+       - bearerAuth: [ ]
+   patch:
+     tags:
+       - facilities
+     summary: Actualizar parcialmente un instalación deportiva
+     description: Permite actualizar uno o más campos de un instalación deportiva existente.
+     parameters:
+       - name: id
+         in: path
+         required: true
+         schema:
+           type: integer
+           description: ID único del instalación deportiva a actualizar
+     requestBody:
+       required: true
+       content:
+         application/json:
+           schema:
+             type: object
+             additionalProperties: true
+           example:
+             nombre: Gimnasio olímpico
+             tipo: Gimnasio
+     responses:
+       '200':
+         description: Instalación deportiva actualizada correctamente
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Facility'
+       '401':
+         $ref: '#/components/responses/UnauthorizedError'
+       '403':
+         $ref: '#/components/responses/ForbiddenError'
+       '404':
+         $ref: '#/components/responses/NotFound'
+     security:
+       - bearerAuth: [ ]
+ /api/auth/login:
+     post:
+       tags:
+         - auth
+       summary: Obtener un token JWT
+       description: Autentica al usuario y devuelve un token JWT.
+       requestBody:
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 username:
+                   type: string
+                   example: "user"
+                 password:
+                   type: string
+                   example: "password"
+       responses:
+         '200':
+           description: Token JWT generado exitosamente
+           content:
+             application/json:
+               schema:
+                 type: string
+                 example: "eyJhbGciOiJIUzI1NiIsInR..."
+         '401':
+           description: Credenciales inválidas
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/Error'
+         '403':
+           $ref: '#/components/responses/ForbiddenError'
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Trainer:
       type: object
@@ -718,7 +1079,6 @@ components:
         fecha: 2024-06-10
         organizador: Organización Deportiva Global
 
-
     Facility:
       type: object
       properties:
@@ -759,6 +1119,24 @@ components:
           type: string
           description: Mensaje descriptivo del error
           example: "Parámetros inválidos"
+    UnauthorizedError:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: "Unauthorized: Token no válido o ausente"
+    ForbiddenError:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 403
+        message:
+          type: string
+          example: "Forbidden: No tiene los permisos necesarios para acceder a este recurso."
 
     BadRequest:
       allOf:
@@ -808,3 +1186,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/InternalServerError'
+    UnauthorizedError:
+        description: Token no válido o ausente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnauthorizedError'
+    ForbiddenError:
+      description: Acceso denegado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
