@@ -90,4 +90,14 @@ public class EventService {
         logger.info("Evento actualizado parcialmente con éxito: ID {}", id);
         return savedEvent;
     }
+
+    public List<Event> getByUbicacionandCapacidad(String ubicacion, Integer capacidad) {
+        logger.info("Obteniendo eventos en la ubicación {} con capacidad mayor o igual a {}", ubicacion, capacidad);
+        return eventRepository.findEventsByUbicacionAndCapacidad(ubicacion, capacidad);
+    }
+    public List <Event> getEventsByCapacidadAndUbicacion(Integer capacidad, String ubicacion){
+        logger.info("Obteniendo eventos con capacidad mayor o igual a {} y ubicación {}", capacidad, ubicacion);
+        return eventRepository.findEventsByCapacidadAndUbicacion(capacidad, ubicacion);
+
+    }
 }

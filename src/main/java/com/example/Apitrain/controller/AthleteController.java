@@ -97,6 +97,16 @@ public class AthleteController {
         logger.info("Operación completada: Atleta actualizado parcialmente con ID {}");
         return ResponseEntity.ok(updatedAthlete);
     }
+
+    @GetMapping("/filterByEdad")
+    public List<Athlete> getByEdadGreaterThan(
+            @RequestParam Integer edadMin) {
+        logger.info("Iniciando operación para filtrar atletas con edad>={}");
+        List<Athlete> filteredAthletes = athleteService.getByEdadGreaterThan(edadMin);
+        logger.info("Operación completada: Se obtuvieron {} atletas filtrados");
+        return athleteService.getByEdadGreaterThan(edadMin);
+    }
+
 }
 
 

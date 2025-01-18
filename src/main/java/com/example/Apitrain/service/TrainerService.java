@@ -91,4 +91,12 @@ public class TrainerService {
         logger.info("Entrenador actualizado parcialmente con éxito: ID {}", id);
         return savedTrainer;
     }
+
+    public List<Trainer>getTrainersByExperienciaGreaterThan(Integer experiencia){
+        logger.info("Iniciando operación para obtener entrenadores con experiencia mayor a {}", experiencia);
+        List<Trainer> trainers = trainerRepository.findTrainersByExperienciaGreaterThan(experiencia);
+        logger.info("Operación completada: Se obtuvieron {} entrenadores", trainers.size());
+        return trainerRepository.findTrainersByExperienciaGreaterThan(experiencia);
+
+    }
 }

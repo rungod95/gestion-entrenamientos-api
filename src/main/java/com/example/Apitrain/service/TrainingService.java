@@ -94,4 +94,9 @@ public class TrainingService {
         logger.info("Entrenamiento actualizado parcialmente con éxito: ID {}", id);
         return savedTraining;
     }
+    public List<Training> getByNivelAndDuracion(String nivel, Integer duracionMin) {
+        logger.info("Buscando entrenamientos con nivel {} y duración mayor o igual a {}", nivel, duracionMin);
+        return trainingRepository.findByNivelAndDuracion(nivel, duracionMin);
+    }
+
 }

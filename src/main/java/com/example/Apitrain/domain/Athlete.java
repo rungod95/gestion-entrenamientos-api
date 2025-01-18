@@ -9,7 +9,8 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "athletes") // Esto mapea la entidad con el nombre "athletes" en la base de datos
+@Entity
+@Table(name = "athletes")
 public class Athlete {
 
     @Id

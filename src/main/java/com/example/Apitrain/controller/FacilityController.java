@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -77,5 +78,14 @@ public class FacilityController {
         Facility updatedFacility = facilityService.updatePartial(id, updates);
         logger.info("Operación completada: Instalación actualizada parcialmente con ID {}", id);
         return ResponseEntity.ok(updatedFacility);
+    }
+
+    @GetMapping("/filterByFechaApertura")
+    public List<Facility> getFacilitiesByFechaApertura(
+           @RequestParam("fecha") LocalDate fecha) {
+        logger.info("Iniciando operación para filtrar instalaciones por fecha de apertura: fechaApertura={}", fecha);
+        List<Facility> filteredFacilities = facilityService.getFacilitiesByFechaApertura(fecha);
+        logger.info("Operación completada: Se obtuvieron {} instalaciones filtradas", filteredFacilities.size());
+        return facilityService.getFacilitiesByFechaApertura(fecha);
     }
 }

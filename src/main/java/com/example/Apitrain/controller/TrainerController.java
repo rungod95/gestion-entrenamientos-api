@@ -83,4 +83,13 @@ public class TrainerController {
         logger.info("Operación completada: Entrenador actualizado parcialmente con ID {}", id);
         return ResponseEntity.ok(updatedTrainer);
     }
+    @GetMapping("/filterByExperiencia")
+    public List<Trainer> getTrainersByExperienciaGreaterThan(@RequestParam Integer experiencia) {
+        logger.info("Iniciando operación para obtener entrenadores con experiencia mayor a {}", experiencia);
+        List<Trainer> trainers = trainerService.getTrainersByExperienciaGreaterThan(experiencia);
+        logger.info("Operación completada: Se obtuvieron {} entrenadores con experiencia mayor a {}", trainers.size(), experiencia);
+        return trainerService.getTrainersByExperienciaGreaterThan(experiencia);
+    }
+
+
 }

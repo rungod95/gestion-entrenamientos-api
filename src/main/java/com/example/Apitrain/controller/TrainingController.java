@@ -97,4 +97,12 @@ public class TrainingController {
         logger.info("Operación completada: Entrenamiento actualizado parcialmente con ID {}", id);
         return ResponseEntity.ok(updatedTraining);
     }
+
+    @GetMapping("/filterByNivelAndDuracion")
+    public List<Training> getByNivelAndDuracion(
+            @RequestParam String nivel,
+            @RequestParam Integer duracion) {
+        logger.info("Iniciando operación para filtrar entrenamientos por nivel y duración");
+        return trainingService.getByNivelAndDuracion(nivel, duracion);
+    }
 }

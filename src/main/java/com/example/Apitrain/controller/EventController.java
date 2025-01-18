@@ -78,4 +78,18 @@ public class EventController {
         logger.info("Operación completada: Evento actualizado parcialmente con ID {}", id);
         return ResponseEntity.ok(updatedEvent);
     }
+
+    @GetMapping("/filterByUbicacionAndCapacidad")
+    public List<Event> getByUbicacionAndCapacidad(
+            @RequestParam String ubicacion,
+            @RequestParam Integer capacidad) {
+            return eventService.getByUbicacionandCapacidad(ubicacion, capacidad);
+    }
+    @GetMapping("/filterByCapacidadAndUbicacion")
+    public List <Event> getEventsByCapacidadAndUbicacion(
+            @RequestParam Integer capacidad,
+            @RequestParam String ubicacion) {
+        return eventService.getEventsByCapacidadAndUbicacion(capacidad, ubicacion);
+    }
+
 }

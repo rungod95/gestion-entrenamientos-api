@@ -84,4 +84,10 @@ public class AthleteService {
 
         return athleteRepository.save(athlete);
     }
+
+    public List<Athlete> getByEdadGreaterThan(Integer edadMin) {
+        logger.info("Obteniendo atletas con edad mayor a {}", edadMin);
+        return athleteRepository.findByEdadGreaterThan(edadMin);
+    }
+
 }

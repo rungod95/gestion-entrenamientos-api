@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -90,5 +91,11 @@ public class FacilityService {
         Facility savedFacility = facilityRepository.save(facility);
         logger.info("Instalación actualizada parcialmente con éxito: ID {}", id);
         return savedFacility;
+    }
+    public List<Facility> getFacilitiesByFechaApertura(LocalDate fecha) {
+        logger.info("Buscando instalaciones con fecha de apertura {}", fecha);
+        List<Facility> facilities = facilityRepository.findFacilitiesByFechaAperturaAfter(fecha);
+        logger.info("Se encontraron {} instalaciones con fecha de apertura {}", facilities.size(), fecha);
+        return facilityRepository.findFacilitiesByFechaAperturaAfter(fecha);
     }
 }
