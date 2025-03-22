@@ -15,7 +15,8 @@ public class AthleteInDto {
     @NotNull(message = "La categoria no puede ser nula")
     private String categoria;
     @NotNull(message = "La edad no puede ser nula")
-    private int edad;
+    @NotNull(message = "La edad no puede ser nula")
+    private Integer edad;
     @NotNull(message = "La altura no puede ser nula")
     private Float altura;
 

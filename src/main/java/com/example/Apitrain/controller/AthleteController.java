@@ -3,6 +3,7 @@ package com.example.Apitrain.controller;
 import com.example.Apitrain.domain.Athlete;
 import com.example.Apitrain.domain.dto.AthleteInDto;
 import com.example.Apitrain.service.AthleteService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +74,7 @@ public class AthleteController {
     }
 
     @PostMapping("/dto")
-    public Athlete createAthlete(@RequestBody AthleteInDto athleteDto) {
+    public Athlete createAthlete(@RequestBody @Valid AthleteInDto athleteDto) {
         logger.info("Iniciando operación para crear un atleta a partir de DTO");
         Athlete athlete = new Athlete();
         athlete.setNombre(athleteDto.getNombre());
