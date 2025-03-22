@@ -1,0 +1,1449 @@
+openapi: 3.0.1
+info:
+  title: API de Entrenamientos Deportivos
+  description: API para gestionar entrenamientos deportivos, incluyendo entrenadores, deportistas, entrenamientos, eventos e instalaciones deportivas.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+    description: Servidor local
+  - url: 'https://api.training.com'
+    description: Servidor de producción
+
+tags:
+  - name: trainers
+    description: Operaciones relacionadas con entrenadores
+  - name: athletes
+    description: Operaciones relacionadas con deportistas
+  - name: trainings
+    description: Operaciones relacionadas con entrenamientos
+  - name: events
+    description: Operaciones relacionadas con eventos deportivos
+  - name: facilities
+    description: Operaciones relacionadas con instalaciones deportivas
+
+paths:
+  /trainers:
+    get:
+      tags:
+        - trainers
+      summary: Listar entrenadores
+      description: Devuelve una lista de todos los entrenadores registrados.
+      responses:
+        '200':
+          description: Lista de entrenadores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trainer'
+              example:
+                - id: 1
+                  nombre: "Juan Perez"
+                  especialidad: "Fuerza"
+                  experiencia: 5
+                  activo: true
+                  fecha_ingreso: "2020-01-01"
+                - id: 2
+                  nombre: "Maria Lopez"
+                  especialidad: "Cardio"
+                  experiencia: 3
+                  activo: false
+                  fecha_ingreso: "2021-03-15"
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+      security:
+        - bearerAuth: [ ]
+
+    post:
+      tags:
+        - trainers
+      summary: Crear entrenador
+      description: Crea un nuevo entrenador.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trainer'
+            example:
+              nombre: "Luis Sanchez"
+              especialidad: "Resistencia"
+              experiencia: 7
+              activo: true
+              fecha_ingreso: "2019-06-10"
+      responses:
+        '201':
+          description: Entrenador creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+              example:
+                id: 3
+                nombre: "Luis Sanchez"
+                especialidad: "Resistencia"
+                experiencia: 7
+                activo: true
+                fecha_ingreso: "2019-06-10"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+  /trainers/{id}:
+    get:
+      tags:
+        - trainers
+      summary: Obtener un entrenador por ID
+      description: Devuelve los detalles de un entrenador específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenador
+      responses:
+        '200':
+          description: Detalles del entrenador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+              example:
+                id: 1
+                nombre: "Juan Perez"
+                especialidad: "Fuerza"
+                experiencia: 5
+                activo: true
+                fecha_ingreso: "2020-01-01"
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    put:
+      tags:
+        - trainers
+      summary: Actualizar un entrenador
+      description: Permite actualizar todos los datos de un entrenador existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenador a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trainer'
+            example:
+              nombre: "Juan Actualizado"
+              especialidad: "Resistencia Avanzada"
+              experiencia: 10
+              activo: true
+              fecha_ingreso: "2018-01-01"
+      responses:
+        '200':
+          description: Entrenador actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+              example:
+                id: 1
+                nombre: "Juan Actualizado"
+                especialidad: "Resistencia Avanzada"
+                experiencia: 10
+                activo: true
+                fecha_ingreso: "2018-01-01"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    patch:
+      tags:
+        - trainers
+      summary: Actualizar parcialmente un entrenador
+      description: Permite actualizar uno o más campos de un entrenador existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenador a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              experiencia: 12
+              activo: false
+      responses:
+        '200':
+          description: Entrenador actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+              example:
+                id: 1
+                nombre: "Juan Perez"
+                especialidad: "Fuerza"
+                experiencia: 12
+                activo: false
+                fecha_ingreso: "2020-01-01"
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    delete:
+      tags:
+        - trainers
+      summary: Eliminar un entrenador
+      description: Elimina un entrenador existente por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenador a eliminar
+      responses:
+        '204':
+          description: Entrenador eliminado correctamente
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+
+  /athletes:
+    get:
+      tags:
+        - athletes
+      summary: Listar deportistas
+      description: Devuelve una lista de deportistas registrados. Permite aplicar filtros por edad, categoría y altura mínima.
+      parameters:
+        - name: edad
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Filtrar deportistas con edad igual o mayor al valor indicado.
+        - name: categoria
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar deportistas por categoría exacta (ej. Amateur, Profesional).
+        - name: altura
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Filtrar deportistas con una altura mínima.
+      responses:
+        '200':
+          description: Lista de deportistas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Athlete'
+              example:
+                - id: 1
+                  nombre: "Javier García"
+                  categoria: "Profesional"
+                  edad: 28
+                  altura: 1.85
+                  fechaRegistro: "2025-01-01"
+                - id: 2
+                  nombre: "Jane Smith"
+                  categoria: "Amateur"
+                  edad: 22
+                  altura: 1.70
+                  fechaRegistro: "2025-01-05"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    post:
+      tags:
+        - athletes
+      summary: Crear deportista
+      description: Crea un nuevo deportista en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Athlete'
+            example:
+              nombre: "Pedro Gutierrez"
+              categoria: "Profesional"
+              edad: 28
+              altura: 1.85
+              fechaRegistro: "2025-01-01"
+      responses:
+        '201':
+          description: Deportista creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Athlete'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /athletes/{id}:
+    get:
+      tags:
+        - athletes
+      summary: Obtener un deportista por ID
+      description: Devuelve los detalles de un deportista específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del deportista
+      responses:
+        '200':
+          description: Detalles del deportista
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Athlete'
+              example:
+                id: 1
+                nombre: "Pedro Martinez"
+                categoria: "Senior"
+                edad: 25
+                altura: 1.85
+                fechaRegistro: "2025-01-01"
+        '404':
+          description: Deportista no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 404
+                message: "Deportista no encontrado"
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags:
+        - athletes
+      summary: Actualizar un deportista
+      description: Permite actualizar todos los datos de un deportista existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del deportista a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Athlete'
+            example:
+              nombre: "John Updated"
+              categoria: "Profesional"
+              edad: 30
+              altura: 1.90
+              fechaRegistro: "2025-01-15"
+      responses:
+        '200':
+          description: Deportista actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Athlete'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags:
+        - athletes
+      summary: Eliminar un deportista
+      description: Elimina un deportista existente por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del deportista a eliminar
+      responses:
+        '204':
+          description: Deportista eliminado correctamente
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    patch:
+      tags:
+        - athletes
+      summary: Actualizar parcialmente un deportista
+      description: Permite actualizar uno o más campos de un deportista existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del deportista a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              nombre: "Pedro Actualizado"
+              edad: 32
+      responses:
+        '200':
+          description: Deportista actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Athlete'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /trainings:
+    get:
+      tags:
+        - trainings
+      summary: Listar entrenamientos
+      description: Devuelve una lista de entrenamientos registrados. Permite aplicar filtros por nivel, tipo y fecha mínima.
+      parameters:
+        - name: nivel
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar entrenamientos por nivel (ej. Básico, Intermedio, Avanzado).
+        - name: tipo
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar entrenamientos por tipo (ej. Cardio, Fuerza).
+        - name: fecha
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filtrar entrenamientos realizados después de la fecha indicada.
+      responses:
+        '200':
+          description: Lista de entrenamientos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Training'
+              example:
+                - id: 1
+                  tipo: "Cardio"
+                  nivel: "Intermedio"
+                  duracion: 45
+                  fecha: "2025-01-01"
+                  completado: true
+                - id: 2
+                  tipo: "Fuerza"
+                  nivel: "Avanzado"
+                  duracion: 60
+                  fecha: "2025-01-02"
+                  completado: false
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    post:
+      tags:
+        - trainings
+      summary: Crear entrenamiento
+      description: Crea un nuevo entrenamiento en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Training'
+            example:
+              tipo: "Fuerza"
+              nivel: "Básico"
+              duracion: 30
+              fecha: "2025-01-10"
+              completado: false
+      responses:
+        '201':
+          description: Entrenamiento creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /trainings/{id}:
+    get:
+      tags:
+        - trainings
+      summary: Obtener un entrenamiento por ID
+      description: Devuelve los detalles de un entrenamiento específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenamiento
+      responses:
+        '200':
+          description: Detalles del entrenamiento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+              example:
+                id: 101
+                tipo: "Cardio"
+                nivel: "Intermedio"
+                duracion: 45
+                fecha: "2025-01-15"
+                completado: true
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags:
+        - trainings
+      summary: Actualizar un entrenamiento
+      description: Permite actualizar todos los datos de un entrenamiento existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenamiento a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Training'
+            example:
+              tipo: "Fuerza"
+              nivel: "Avanzado"
+              duracion: 60
+              fecha: "2025-02-10"
+              completado: true
+      responses:
+        '200':
+          description: Entrenamiento actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags:
+        - trainings
+      summary: Eliminar un entrenamiento
+      description: Elimina un entrenamiento existente por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenamiento a eliminar
+      responses:
+        '204':
+          description: Entrenamiento eliminado correctamente
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    patch:
+      tags:
+        - trainings
+      summary: Actualizar parcialmente un entrenamiento
+      description: Permite actualizar uno o más campos de un entrenamiento existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del entrenamiento a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              nivel: "Avanzado"
+              completado: true
+      responses:
+        '200':
+          description: Entrenamiento actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /events:
+    get:
+      tags:
+        - events
+      summary: Listar eventos
+      description: Devuelve una lista de todos los eventos registrados. Permite aplicar filtros por nombre, ubicación y capacidad mínima.
+      parameters:
+        - name: nombre
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar eventos por nombre que contenga el texto especificado.
+        - name: ubicacion
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar eventos por ubicación que contenga el texto especificado.
+        - name: capacidad
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Filtrar eventos con una capacidad mínima especificada.
+      responses:
+        '200':
+          description: Lista de eventos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+              example:
+                - id: 1
+                  nombre: "Maratón Ciudad"
+                  ubicacion: "Madrid"
+                  capacidad: 500
+                  fecha: "2025-04-15"
+                  organizador: "Organización Deportiva Global"
+                - id: 2
+                  nombre: "Torneo de Baloncesto"
+                  ubicacion: "Barcelona"
+                  capacidad: 200
+                  fecha: "2025-05-10"
+                  organizador: "Liga Nacional de Baloncesto"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    post:
+      tags:
+        - events
+      summary: Crear evento
+      description: Crea un nuevo evento en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+            example:
+              nombre: "Campeonato de Natación"
+              ubicacion: "Valencia"
+              capacidad: 150
+              fecha: "2025-06-20"
+              organizador: "Federación de Natación"
+      responses:
+        '201':
+          description: Evento creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+  /events/{id}:
+    get:
+      tags:
+        - events
+      summary: Obtener un evento por ID
+      description: Devuelve los detalles de un evento específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del evento
+      responses:
+        '200':
+          description: Detalles del evento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+              example:
+                id: 101
+                nombre: "Maratón Ciudad"
+                ubicacion: "Madrid"
+                capacidad: 500
+                fecha: "2025-04-15"
+                organizador: "Organización Deportiva Global"
+
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+          - bearerAuth: [ ]
+
+    put:
+      tags:
+        - events
+      summary: Actualizar un evento
+      description: Permite actualizar todos los datos de un evento existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del evento a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+            example:
+              nombre: "Torneo de Atletismo"
+              ubicacion: "Sevilla"
+              capacidad: 300
+              fecha: "2025-07-10"
+              organizador: "Asociación de Atletismo"
+      responses:
+        '200':
+          description: Evento actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    delete:
+      tags:
+        - events
+      summary: Eliminar un evento
+      description: Elimina un evento existente por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del evento a eliminar
+      responses:
+        '204':
+          description: Evento eliminado correctamente
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    patch:
+      tags:
+        - events
+      summary: Actualizar parcialmente un evento
+      description: Permite actualizar uno o más campos de un evento existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único del evento a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              nombre: "Copa Regional"
+              ubicacion: "Zaragoza"
+      responses:
+        '200':
+          description: Evento actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '401':
+            $ref: '#/components/responses/UnauthorizedError'
+        '403':
+              $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+  /facilities:
+    get:
+      tags:
+        - facilities
+      summary: Listar instalaciones deportivas
+      description: Devuelve una lista de todas las instalaciones deportivas registradas. Permite aplicar filtros por nombre, tipo y capacidad mínima.
+      parameters:
+        - name: nombre
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar instalaciones por nombre que contenga el texto especificado.
+        - name: tipo
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtrar instalaciones por tipo (ej. Gimnasio, Campo).
+        - name: capacidad
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Filtrar instalaciones con una capacidad mínima especificada.
+      responses:
+        '200':
+          description: Lista de instalaciones deportivas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility'
+              example:
+                - id: 1
+                  nombre: "Gimnasio Central"
+                  tipo: "Gimnasio"
+                  capacidad: 100
+                  abierto_24h: true
+                  fecha_apertura: "2018-06-15"
+                - id: 2
+                  nombre: "Estadio Olímpico"
+                  tipo: "Campo"
+                  capacidad: 50000
+                  abierto_24h: false
+                  fecha_apertura: "2000-05-01"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+
+    post:
+      tags:
+        - facilities
+      summary: Crear instalación deportiva
+      description: Crea una nueva instalación deportiva en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Facility'
+            example:
+              nombre: "Pista de Atletismo"
+              tipo: "Pista"
+              capacidad: 300
+              abierto_24h: false
+              fecha_apertura: "2023-03-20"
+      responses:
+        '201':
+          description: Instalación deportiva creada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+            $ref: '#/components/responses/UnauthorizedError'
+        '403':
+              $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+  /facilities/{id}:
+    get:
+      tags:
+        - facilities
+      summary: Obtener una instalación deportiva por ID
+      description: Devuelve los detalles de una instalación deportiva específica.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único de la instalación deportiva
+      responses:
+        '200':
+          description: Detalles de la instalación deportiva
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+              example:
+                id: 1
+                nombre: "Gimnasio Central"
+                tipo: "Gimnasio"
+                capacidad: 100
+                abierto_24h: true
+                fecha_apertura: "2018-06-15"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    put:
+      tags:
+        - facilities
+      summary: Actualizar una instalación deportiva
+      description: Permite actualizar todos los datos de una instalación deportiva existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único de la instalación deportiva a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Facility'
+            example:
+              nombre: "Centro Deportivo Modernizado"
+              tipo: "Complejo"
+              capacidad: 500
+              abierto_24h: true
+              fecha_apertura: "2015-01-10"
+      responses:
+        '200':
+          description: Instalación deportiva actualizada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+      - bearerAuth: []
+
+    delete:
+      tags:
+        - facilities
+      summary: Eliminar una instalación deportiva
+      description: Elimina una instalación deportiva existente por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único de la instalación deportiva a eliminar
+      responses:
+        '204':
+          description: Instalación deportiva eliminada correctamente
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    patch:
+      tags:
+        - facilities
+      summary: Actualizar parcialmente una instalación deportiva
+      description: Permite actualizar uno o más campos de una instalación deportiva existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID único de la instalación deportiva a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              nombre: "Pabellón Deportivo Actualizado"
+              capacidad: 600
+      responses:
+        '200':
+          description: Instalación deportiva actualizada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+            $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+  /api/auth/login:
+     post:
+       tags:
+         - auth
+       summary: Obtener un token JWT
+       description: Autentica al usuario y devuelve un token JWT.
+       requestBody:
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 username:
+                   type: string
+                   example: "user"
+                 password:
+                   type: string
+                   example: "password"
+       responses:
+         '200':
+           description: Token JWT generado exitosamente
+           content:
+             application/json:
+               schema:
+                 type: string
+                 example: "eyJhbGciOiJIUzI1NiIsInR..."
+         '401':
+           description: Credenciales inválidas
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/Error'
+         '403':
+           $ref: '#/components/responses/ForbiddenError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Trainer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del entrenador
+        nombre:
+          type: string
+          description: Nombre del entrenador
+        especialidad:
+          type: string
+          description: Especialidad del entrenador
+        experiencia:
+          type: integer
+          description: Años de experiencia
+        activo:
+          type: boolean
+          description: Si el entrenador está activo o no
+        fecha_ingreso:
+          type: string
+          format: date
+          description: Fecha de ingreso del entrenador
+      example:
+        id: 1
+        nombre: Juan Pérez
+        especialidad: Fuerza
+        experiencia: 5
+        activo: true
+        fecha_ingreso: 2020-01-01
+    Athlete:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del deportista
+        nombre:
+          type: string
+          description: Nombre del deportista
+        categoria:
+          type: string
+          description: Categoría del deportista
+        edad:
+          type: integer
+          description: Edad del deportista
+        altura:
+          type: number
+          format: float
+          description: Altura del deportista
+        fecha_registro:
+          type: string
+          format: date
+          description: Fecha de registro del deportista
+      example:
+        id: 101
+        nombre: Pedro Martín
+        categoria: Profesional
+        edad: 30
+        altura: 1.75
+        fecha_registro: 2024-01-15
+    Training:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del entrenamiento
+        tipo:
+          type: string
+          description: Tipo de entrenamiento
+        nivel:
+          type: string
+          description: Nivel del entrenamiento
+        duracion:
+          type: integer
+          description: Duración del entrenamiento (minutos)
+        fecha:
+          type: string
+          format: date
+          description: Fecha del entrenamiento
+        completado:
+          type: boolean
+          description: Si el entrenamiento fue completado
+      example:
+        id: 301
+        tipo: Cardio
+        nivel: Intermedio
+        duracion: 60
+        fecha: 2024-03-01
+        completado: true
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único del evento
+        nombre:
+          type: string
+          description: Nombre del evento
+        ubicacion:
+          type: string
+          description: Ubicación donde se realiza el evento
+        capacidad:
+          type: integer
+          description: Número máximo de participantes permitidos
+          minimum: 1
+        fecha:
+          type: string
+          format: date
+          description: Fecha del evento
+        organizador:
+          type: string
+          description: Nombre del organizador del evento
+      required:
+        - nombre
+        - ubicacion
+      example:
+        id: 101
+        nombre: Maratón Ciudad
+        ubicacion: Madrid
+        capacidad: 500
+        fecha: 2024-06-10
+        organizador: Organización Deportiva Global
+
+    Facility:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador único de la instalación
+        nombre:
+          type: string
+          description: Nombre de la instalación
+        tipo:
+          type: string
+          description: Tipo de instalación
+        capacidad:
+          type: integer
+          description: Capacidad máxima de personas
+        abierto_24h:
+          type: boolean
+          description: Si la instalación está abierta las 24 horas
+        fecha_apertura:
+          type: string
+          format: date
+          description: Fecha de apertura de la instalación
+      example:
+        id: 501
+        nombre: Gimnasio Central
+        tipo: Gimnasio
+        capacidad: 100
+        abierto_24h: true
+        fecha_apertura: 2018-06-15
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Código de error
+          example: 400
+        message:
+          type: string
+          description: Mensaje descriptivo del error
+          example: "Parámetros inválidos"
+    UnauthorizedError:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: "Unauthorized: Token no válido o ausente"
+    ForbiddenError:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 403
+        message:
+          type: string
+          example: "Forbidden: No tiene los permisos necesarios para acceder a este recurso."
+
+    BadRequest:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+          properties:
+            details:
+              type: array
+              items:
+                type: string
+                description: Detalle del error
+          example:
+            code: 400
+            message: "Solicitud mal formada"
+            details:
+              - "El campo 'nombre' es obligatorio."
+              - "El campo 'edad' debe ser mayor a 0."
+    NotFound:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+      example:
+        code: 404
+        message: "Recurso no encontrado"
+    InternalServerError:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+      example:
+        code: 500
+        message: "Error interno del servidor"
+  responses:
+    BadRequest:
+      description: Solicitud mal formada
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+    InternalServerError:
+      description: Error interno del servidor
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+    UnauthorizedError:
+        description: Token no válido o ausente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnauthorizedError'
+    ForbiddenError:
+      description: Acceso denegado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
