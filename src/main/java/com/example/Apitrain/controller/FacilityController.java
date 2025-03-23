@@ -2,9 +2,11 @@ package com.example.Apitrain.controller;
 
 import com.example.Apitrain.domain.Facility;
 import com.example.Apitrain.service.FacilityService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +39,8 @@ public class FacilityController {
     }
 
     @PostMapping
-    public Facility createFacility(@RequestBody Facility facility) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Facility createFacility(@RequestBody @Valid Facility facility) {
         logger.info("Iniciando operación para crear una instalación");
         Facility createdFacility = facilityService.createFacility(facility);
         logger.info("Instalación creada con éxito: ID {}", createdFacility.getId());
@@ -53,6 +56,7 @@ public class FacilityController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteFacility(@PathVariable Long id) {
         logger.info("Iniciando operación para eliminar la instalación con ID {}", id);
         facilityService.deleteFacility(id);

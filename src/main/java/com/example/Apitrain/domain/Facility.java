@@ -1,6 +1,8 @@
 package com.example.Apitrain.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -19,9 +21,11 @@ public class Facility {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre es obligatorio")
     @Column(nullable = false)
     private String nombre;
 
+    @NotBlank(message = "El tipo es obligatorio")
     @Column(nullable = false)
     private String tipo;
 
@@ -35,5 +39,7 @@ public class Facility {
     private LocalDate fechaApertura;
 
     @OneToMany(mappedBy = "facility")
-    private List<Event> events; // Relación con Event
+    @JsonIgnore // ⬅⬅⬅ Añade esto
+    private List<Event> events;
+
 }

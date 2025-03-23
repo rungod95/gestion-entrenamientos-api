@@ -1,6 +1,7 @@
 package com.example.Apitrain.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class Training {
 
     @Column(name = "tipo")
     private String tipo;
-
+    @NotBlank
     @Column(name = "nivel", nullable = false)
     private String nivel;
 

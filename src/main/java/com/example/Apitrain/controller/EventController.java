@@ -2,6 +2,7 @@ package com.example.Apitrain.controller;
 
 import com.example.Apitrain.domain.Event;
 import com.example.Apitrain.service.EventService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,43 +21,48 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping
-    public List<Event> getAllEvents() {
+    public ResponseEntity<List<Event>> getAllEvents() {
         logger.info("Iniciando operación para obtener todos los eventos");
         List<Event> events = eventService.getAllEvents();
         logger.info("Operación completada: Se obtuvieron {} eventos", events.size());
-        return events;
+        return ResponseEntity.ok(events);
     }
 
     @GetMapping("/{id}")
-    public Event getEventById(@PathVariable Long id) {
+    public ResponseEntity<Event> getEventById(@PathVariable Long id) {
         logger.info("Iniciando operación para obtener el evento con ID {}", id);
         Event event = eventService.getEventById(id);
         logger.info("Operación completada: Evento obtenido con ID {}", id);
-        return event;
+        return ResponseEntity.ok(event);
     }
 
+
     @PostMapping
-    public Event createEvent(@RequestBody Event event) {
+    public ResponseEntity<Event> createEvent(@RequestBody @Valid Event event) {
         logger.info("Iniciando operación para crear un evento");
         Event createdEvent = eventService.createEvent(event);
         logger.info("Evento creado con éxito: ID {}", createdEvent.getId());
-        return createdEvent;
+        return ResponseEntity.status(201).body(createdEvent);
     }
 
+
     @PutMapping("/{id}")
-    public Event updateEvent(@PathVariable Long id, @RequestBody Event event) {
+    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody @Valid Event event) {
         logger.info("Iniciando operación para actualizar el evento con ID {}", id);
         Event updatedEvent = eventService.updateEvent(id, event);
         logger.info("Operación completada: Evento actualizado con ID {}", id);
-        return updatedEvent;
+        return ResponseEntity.ok(updatedEvent);
     }
 
+
     @DeleteMapping("/{id}")
-    public void deleteEvent(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         logger.info("Iniciando operación para eliminar el evento con ID {}", id);
         eventService.deleteEvent(id);
         logger.info("Operación completada: Evento eliminado con ID {}", id);
+        return ResponseEntity.noContent().build(); // 204
     }
+
 
     @GetMapping("/filter")
     public List<Event> filterEvents(

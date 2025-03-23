@@ -14,6 +14,6 @@ public interface TrainingRepository extends JpaRepository<Training, Long> {
     List<Training> findByTipoContainingAndNivelContainingAndDuracionGreaterThanEqual(
             String tipo, String nivel, Integer duracion);
 
-    @Query("SELECT t FROM Training t WHERE t.nivel = :nivel AND t.duracion > :duracionMin")
+    @Query("SELECT t FROM Training t WHERE t.nivel = :nivel AND t.duracion >= :duracionMin")
     List<Training> findByNivelAndDuracion(@Param("nivel") String nivel, @Param("duracionMin") Integer duracionMin);
 }

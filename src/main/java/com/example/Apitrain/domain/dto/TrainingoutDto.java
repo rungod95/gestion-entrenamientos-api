@@ -12,13 +12,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 
 
-
 public class TrainingoutDto {
     private Long id;
-    private String nombre;
-    private String ubicacion;
-    private Integer capacidad;
-    private LocalDate fechaEvento;
-    private boolean completado;
-
+    private String tipo;
+    private String nivel;
+    private Integer duracion;
+    private LocalDate fecha;
 }

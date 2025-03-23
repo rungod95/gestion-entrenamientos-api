@@ -40,7 +40,7 @@ public class AthleteController {
     }
 
     @PostMapping
-    public Athlete createAthlete(@RequestBody Athlete athlete) {
+    public Athlete createAthlete(@RequestBody @Valid Athlete athlete) {
         logger.info("Iniciando operación para crear un atleta");
         Athlete createdAthlete = athleteService.createAthlete(athlete);
         logger.info("Atleta creado con éxito: ID {}");

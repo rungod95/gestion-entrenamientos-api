@@ -1,6 +1,8 @@
 package com.example.Apitrain.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -19,17 +21,22 @@ public class Event {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank
     private String nombre;
 
     @Column(nullable = false)
+    @NotBlank
     private String ubicacion;
 
     @Column
     private Integer capacidad;
+
     @Column(name = "fecha_evento")
     private LocalDate fechaEvento;
 
+
     @ManyToOne
     @JoinColumn(name = "facility_id")
-    private Facility facility; // Relación con Facility
+    @JsonManagedReference
+    private Facility facility;
 }

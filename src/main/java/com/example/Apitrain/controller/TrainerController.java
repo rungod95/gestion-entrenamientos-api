@@ -1,5 +1,6 @@
 package com.example.Apitrain.controller;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class TrainerController {
     }
 
     @PostMapping
-    public Trainer createTrainer(@RequestBody Trainer trainer) {
+    public Trainer createTrainer(@RequestBody @Valid Trainer trainer) {
         logger.info("Iniciando operación para crear un entrenador");
         try {
             Trainer createdTrainer = trainerService.createTrainer(trainer);
