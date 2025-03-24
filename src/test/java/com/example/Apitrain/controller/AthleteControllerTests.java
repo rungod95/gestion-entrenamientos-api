@@ -4,6 +4,7 @@ import com.example.Apitrain.Security.JwtTokenService;
 import com.example.Apitrain.config.TestSecurityConfig;
 import com.example.Apitrain.domain.Athlete;
 import com.example.Apitrain.domain.dto.AthleteInDto;
+import com.example.Apitrain.exception.AthleteNotFoundException;
 import com.example.Apitrain.service.AthleteService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -101,7 +102,7 @@ public class AthleteControllerTests {
 
     @Test
     public void testGetAthleteByIdReturnsNotFound() throws Exception {
-        when(athleteService.getAthleteById(99L)).thenThrow(new RuntimeException("Athlete not found"));
+        when(athleteService.getAthleteById(99L)).thenThrow(new AthleteNotFoundException("Athlete not found"));
 
         mockMvc.perform(get("/athletes/99")
                 .accept(MediaType.APPLICATION_JSON))
@@ -237,7 +238,7 @@ public class AthleteControllerTests {
         when(athleteService.getByEdadGreaterThan(25)).thenReturn(athletes);
 
         mockMvc.perform(get("/athletes/filterByEdad")
-                .param("edad", "25")
+                .param("edadMin", "25")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre").value("Juan Pérez"))

@@ -63,7 +63,7 @@ public class TrainerControllerIntegrationTests {
         String response = mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(trainerJson))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
         Trainer createdTrainer = objectMapper.readValue(response, Trainer.class);
@@ -107,7 +107,7 @@ public class TrainerControllerIntegrationTests {
         String response = mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(trainer)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
         Trainer createdTrainer = objectMapper.readValue(response, Trainer.class);
@@ -136,14 +136,14 @@ public class TrainerControllerIntegrationTests {
         String response = mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(trainer)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
         Trainer createdTrainer = objectMapper.readValue(response, Trainer.class);
 
         // Eliminar entrenador
         mockMvc.perform(delete("/trainers/" + createdTrainer.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         // Verificar que el entrenador fue eliminado
         mockMvc.perform(get("/trainers/" + createdTrainer.getId())
@@ -169,12 +169,12 @@ public class TrainerControllerIntegrationTests {
         mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(trainer1)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(trainer2)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         // Filtrar entrenadores
         mockMvc.perform(get("/trainers/filter")
@@ -204,12 +204,12 @@ public class TrainerControllerIntegrationTests {
         mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(trainer1)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(post("/trainers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(trainer2)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         // Obtener entrenadores por experiencia
         mockMvc.perform(get("/trainers/filterByExperiencia")
@@ -217,4 +217,4 @@ public class TrainerControllerIntegrationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre").value("Juan Pérez"));
     }
-} 
+}
