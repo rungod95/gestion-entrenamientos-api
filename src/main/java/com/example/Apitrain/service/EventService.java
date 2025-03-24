@@ -3,6 +3,7 @@ package com.example.Apitrain.service;
 import com.example.Apitrain.domain.Event;
 import com.example.Apitrain.exception.EventNotFoundException;
 import com.example.Apitrain.repository.EventRepository;
+import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,16 @@ public class EventService {
         return eventRepository.findById(id)
                 .orElseThrow(() -> {
                     logger.error("Evento no encontrado con ID {}", id);
-                    return new EventNotFoundException("Event not found with id " + id);
+                    return new EventNotFoundException("Evento no encontrado con id " + id);
                 });
     }
 
-    public Event createEvent(Event event) {
+    public Event createEvent(Event event) throws BadRequestException {
         logger.info("Guardando un nuevo evento en la base de datos");
+        if (event.getFacility() == null) {
+            logger.error("Intento de crear evento sin facility");
+            throw new BadRequestException("La facility es obligatoria para crear un evento");
+        }
         Event createdEvent = eventRepository.save(event);
         logger.info("Evento creado con éxito: ID {}", createdEvent.getId());
         return createdEvent;
@@ -50,6 +55,9 @@ public class EventService {
         event.setFechaEvento(updatedEvent.getFechaEvento());
         event.setUbicacion(updatedEvent.getUbicacion());
         event.setCapacidad(updatedEvent.getCapacidad());
+        if (updatedEvent.getFacility() != null) {
+            event.setFacility(updatedEvent.getFacility());
+        }
         Event savedEvent = eventRepository.save(event);
         logger.info("Evento actualizado con éxito: ID {}", id);
         return savedEvent;
@@ -57,8 +65,8 @@ public class EventService {
 
     public void deleteEvent(Long id) {
         logger.info("Eliminando el evento con ID {}", id);
-        getEventById(id);
-        eventRepository.deleteById(id);
+        Event event = getEventById(id);
+        eventRepository.delete(event);
         logger.info("Evento eliminado con éxito: ID {}", id);
     }
 
@@ -71,11 +79,7 @@ public class EventService {
 
     public Event updatePartial(Long id, Map<String, Object> updates) {
         logger.info("Actualizando parcialmente el evento con ID {}", id);
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> {
-                    logger.error("Evento no encontrado con ID {}", id);
-                    return new EventNotFoundException("Event not found with id: " + id);
-                });
+        Event event = getEventById(id);
 
         updates.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(Event.class, key);
@@ -95,9 +99,9 @@ public class EventService {
         logger.info("Obteniendo eventos en la ubicación {} con capacidad mayor o igual a {}", ubicacion, capacidad);
         return eventRepository.findEventsByUbicacionAndCapacidad(ubicacion, capacidad);
     }
-    public List <Event> getEventsByCapacidadAndUbicacion(Integer capacidad, String ubicacion){
+
+    public List<Event> getEventsByCapacidadAndUbicacion(Integer capacidad, String ubicacion) {
         logger.info("Obteniendo eventos con capacidad mayor o igual a {} y ubicación {}", capacidad, ubicacion);
         return eventRepository.findEventsByCapacidadAndUbicacion(capacidad, ubicacion);
-
     }
 }

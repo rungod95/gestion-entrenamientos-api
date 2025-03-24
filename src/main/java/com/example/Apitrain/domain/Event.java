@@ -1,8 +1,10 @@
 package com.example.Apitrain.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -37,6 +39,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "facility_id")
-    @JsonManagedReference
+    @JsonIgnoreProperties("events")
+    @NotNull(message = "La instalación es obligatoria")
     private Facility facility;
 }
