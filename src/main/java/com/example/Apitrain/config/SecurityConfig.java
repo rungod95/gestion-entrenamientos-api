@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) //
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login", "/api/auth/register","/trainings/**","/athletes/**").permitAll()
+                        .requestMatchers("/events/test", "/api/auth/login", "/api/auth/register", "/trainings/**", "/athletes/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll() // Permitir acceso a H2 Console
                         .requestMatchers( "/events/**","/facilities/**","trainers/**").authenticated() // Requiere autenticación para estas rutas
                         .anyRequest().authenticated() // Requiere autenticación para otras rutas

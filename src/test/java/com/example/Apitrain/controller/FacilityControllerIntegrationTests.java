@@ -61,7 +61,7 @@ public class FacilityControllerIntegrationTests {
         String response = mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(facilityJson))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
         Facility createdFacility = objectMapper.readValue(response, Facility.class);
@@ -106,7 +106,7 @@ public class FacilityControllerIntegrationTests {
         String response = mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(facility)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
         Facility createdFacility = objectMapper.readValue(response, Facility.class);
@@ -136,14 +136,14 @@ public class FacilityControllerIntegrationTests {
         String response = mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(facility)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
         Facility createdFacility = objectMapper.readValue(response, Facility.class);
 
         // Eliminar instalación
         mockMvc.perform(delete("/facilities/" + createdFacility.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         // Verificar que la instalación fue eliminada
         mockMvc.perform(get("/facilities/" + createdFacility.getId())
@@ -171,12 +171,12 @@ public class FacilityControllerIntegrationTests {
         mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(facility1)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(facility2)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         // Filtrar instalaciones
         mockMvc.perform(get("/facilities/filter")
@@ -206,12 +206,12 @@ public class FacilityControllerIntegrationTests {
         mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(facility1)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         mockMvc.perform(post("/facilities")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(facility2)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         // Obtener instalaciones por fecha de apertura
         mockMvc.perform(get("/facilities/filterByFechaApertura")
