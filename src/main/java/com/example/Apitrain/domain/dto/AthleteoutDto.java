@@ -9,7 +9,7 @@ public class AthleteoutDto {
 
     private Long id;
     private String nombre;
-    private String Categoria;
+    private String categoria;
     private int edad;
     private Float altura;
 

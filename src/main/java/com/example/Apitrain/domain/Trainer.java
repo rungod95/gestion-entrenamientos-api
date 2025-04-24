@@ -1,6 +1,7 @@
 package com.example.Apitrain.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,10 @@ public class Trainer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    @NotBlank
     private String nombre;
     @Column(nullable = false)
+    @NotBlank
     private String especialidad;
     @Column
     private Integer experiencia;

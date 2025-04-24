@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
@@ -19,7 +20,7 @@ public class Trainingindto {
     @NotNull(message = "El campo tipo es obligatorio")
     private String tipo;
 
-    @NotNull(message = "El nivel es obligatorio")
+    @NotBlank(message = "El nivel es obligatorio")
     private String nivel;
 
     @Min(value = 1, message = "La duración debe ser mayor a 0")

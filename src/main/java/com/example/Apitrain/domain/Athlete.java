@@ -1,5 +1,6 @@
 package com.example.Apitrain.domain;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,12 @@ public class Athlete {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false) // Marca como requerido
+    @Column(nullable = false)
+    @NotBlank// Marca como requerido
     private String nombre;
 
-    @Column(nullable = false) // Marca como requerido
+    @Column(nullable = false)
+    @NotBlank// Marca como requerido
     private String categoria;
 
     @Column
