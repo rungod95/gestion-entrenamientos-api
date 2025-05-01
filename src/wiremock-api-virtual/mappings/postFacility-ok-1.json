@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/facilities",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.nombre"
+      },
+      {
+        "matchesJsonPath": "$.tipo"
+      },
+      {
+        "matchesJsonPath": "$.capacidad"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postFacility-ok-1.json"
+  }
+}

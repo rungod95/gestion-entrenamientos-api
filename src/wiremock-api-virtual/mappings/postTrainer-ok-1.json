@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/trainers",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.nombre"
+      },
+      {
+        "matchesJsonPath": "$.especialidad"
+      },
+      {
+        "matchesJsonPath": "$.experiencia"
+      },
+      { "matchesJsonPath": "$.activo" }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postTrainer-ok-1.json"
+  }
+}

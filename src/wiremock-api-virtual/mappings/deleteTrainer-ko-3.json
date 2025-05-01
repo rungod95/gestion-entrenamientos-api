@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPath": "/trainers/666"
+  },
+  "response": {
+    "status": 500,
+
+    "body": "{\"error\": \"Error al eliminar el trainer\"}"
+  }
+}

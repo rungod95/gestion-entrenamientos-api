@@ -1,0 +1,22 @@
+[
+  {
+    "id": 4,
+    "nombre": "Triatl\u00f3n Sevilla",
+    "ubicacion": "Sevilla",
+    "capacidad": 250,
+    "fechaEvento": "2024-08-05",
+    "facility": {
+      "id": 4
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Campeonato de Escalada",
+    "ubicacion": "Valencia",
+    "capacidad": 150,
+    "fechaEvento": "2024-09-12",
+    "facility": {
+      "id": 5
+    }
+  }
+]

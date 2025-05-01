@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPath": "/trainers/abc"
+  },
+  "response": {
+    "status": 400,
+    "body": "{\"error\": \"ID inv\\u00e1lido\"}"
+  }
+}

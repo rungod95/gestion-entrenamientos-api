@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/trainers",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!@.activo)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Error interno al crear el entrenador\"}"
+  }
+}

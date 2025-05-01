@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/trainings",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.tipoEntrenamiento"
+      },
+      {
+        "matchesJsonPath": "$.nivel"
+      },
+      {
+        "matchesJsonPath": "$.duracion"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postTraining-ok-2.json"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/trainings",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!@.nivel)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Nivel de entrenamiento obligatorio\"}"
+  }
+}

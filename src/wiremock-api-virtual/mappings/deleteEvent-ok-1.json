@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPath": "/events/1"
+  },
+  "response": {
+    "status": 204
+  }
+}
