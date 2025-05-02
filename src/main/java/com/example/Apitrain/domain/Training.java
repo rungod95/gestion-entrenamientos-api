@@ -1,5 +1,7 @@
 package com.example.Apitrain.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -35,6 +37,7 @@ public class Training {
     private LocalDate fecha;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
 
@@ -50,5 +53,6 @@ public class Training {
             joinColumns = @JoinColumn(name = "training_id"),
             inverseJoinColumns = @JoinColumn(name = "athlete_id")
     )
+    @JsonIgnore
     private List<Athlete> athletes;
 }

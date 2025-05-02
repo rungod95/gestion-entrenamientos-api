@@ -39,7 +39,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "facility_id")
-    @JsonIgnoreProperties("events")
+    @JsonBackReference
     @NotNull(message = "La instalación es obligatoria")
     private Facility facility;
 }
