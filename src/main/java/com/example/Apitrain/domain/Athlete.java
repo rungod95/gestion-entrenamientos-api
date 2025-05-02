@@ -1,4 +1,5 @@
 package com.example.Apitrain.domain;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -37,5 +38,6 @@ public class Athlete {
 
     @ManyToOne
     @JoinColumn(name = "trainer_id") // Configura la relación con la tabla "Trainer"
+    @JsonBackReference
     private Trainer trainer;
 }

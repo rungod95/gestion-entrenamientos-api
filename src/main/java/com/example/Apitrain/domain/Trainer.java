@@ -1,5 +1,6 @@
 package com.example.Apitrain.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class Trainer {
     @Column
     private Boolean activo;
     @OneToMany(mappedBy = "trainer")
+    @JsonManagedReference
     private List<Athlete> athletes;
 
 
