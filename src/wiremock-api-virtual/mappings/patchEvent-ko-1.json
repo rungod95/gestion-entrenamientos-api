@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PATCH",
+    "urlPath": "/events/invalid"
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Datos inv\\u00e1lidos para actualizaci\\u00f3n parcial\"}"
+  }
+}

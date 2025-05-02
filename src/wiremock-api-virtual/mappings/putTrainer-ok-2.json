@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPath": "/trainers/2"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putTrainer-ok-2.json"
+  }
+}

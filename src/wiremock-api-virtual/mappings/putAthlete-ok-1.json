@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPath": "/athletes/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "putAthlete-ok-1.json"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "nombre": "Juan",
+  "especialidad": "Boxeo",
+  "experiencia": 5,
+  "activo": true
+}

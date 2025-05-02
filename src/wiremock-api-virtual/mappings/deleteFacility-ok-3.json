@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPath": "/facilities/3"
+  },
+  "response": {
+    "status": 204
+  }
+}

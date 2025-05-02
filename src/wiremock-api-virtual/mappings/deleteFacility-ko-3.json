@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPath": "/facilities/error"
+  },
+  "response": {
+    "status": 500,
+    "body": "{\"error\": \"Error al eliminar la instalaci\\u00f3n\"}"
+  }
+}

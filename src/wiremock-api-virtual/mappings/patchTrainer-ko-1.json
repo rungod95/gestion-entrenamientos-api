@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PATCH",
+    "urlPath": "/trainers/malformado"
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Par\\u00e1metros inv\\u00e1lidos\"}"
+  }
+}

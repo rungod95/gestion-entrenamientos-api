@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPath": "/trainers/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"id\": 1, \"message\": \"Trainer actualizado\"}"
+  }
+}

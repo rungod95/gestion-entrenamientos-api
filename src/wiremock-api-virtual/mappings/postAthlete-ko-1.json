@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/athletes",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!@.nombre)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"El campo nombre es obligatorio\"}"
+  }
+}

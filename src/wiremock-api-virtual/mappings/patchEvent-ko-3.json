@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PATCH",
+    "urlPath": "/events/error"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Error inesperado durante la actualizaci\\u00f3n parcial\"}"
+  }
+}

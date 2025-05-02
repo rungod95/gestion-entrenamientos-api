@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPath": "/trainers/999"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Trainer no encontrado\"}"
+  }
+}

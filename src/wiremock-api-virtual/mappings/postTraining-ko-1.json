@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/trainings",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!@.tipoEntrenamiento)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Tipo de entrenamiento obligatorio\"}"
+  }
+}

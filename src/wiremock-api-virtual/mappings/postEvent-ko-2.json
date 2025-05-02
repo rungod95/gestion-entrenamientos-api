@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/events",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!@.nombre)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Ubicaci\\u00f3n del evento es obligatoria\"}"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPath": "/events/999"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+
+
+    "body": "{\"error\": \"Evento no encontrado\"}"
+  }
+}

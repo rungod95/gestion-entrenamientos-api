@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/trainers",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(!@.nombre)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"El nombre es obligatorio\"}"
+  }
+}

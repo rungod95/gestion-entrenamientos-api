@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/events",
+    "headers": {
+      "X-Simulate-Error": {
+        "equalTo": "error3"
+      }
+    }
+  },
+  "response": {
+    "status": 503,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"error\": \"Servicio no disponible\"}"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/athletes",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.nombre"
+      },
+      {
+        "matchesJsonPath": "$.categoria"
+      },
+      {
+        "matchesJsonPath": "$.trainer"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postAthlete-ok-1.json"
+  }
+}
