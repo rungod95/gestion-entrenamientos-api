@@ -1,6 +1,5 @@
 package com.example.Apitrain.controller;
 
-import com.example.Apitrain.Security.JwtAuthenticationFilter;
 import com.example.Apitrain.Security.JwtTokenService;
 import com.example.Apitrain.config.TestSecurityConfig;
 import com.example.Apitrain.domain.Trainer;

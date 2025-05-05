@@ -1,9 +1,19 @@
 spring:
+  config:
+    activate:
+      on-profile: docker
+
   datasource:
     url: jdbc:mysql://db:3306/entrenamiento
     username: usuario
     password: usuario123
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:/data.sql
+      continue-on-error: true
 
   jpa:
     hibernate:
@@ -11,14 +21,5 @@ spring:
     defer-datasource-initialization: true
     show-sql: true
 
-  sql:
-    init:
-      mode: always
-      encoding: UTF-8
-
 server:
   port: 8081
-
-  h2:
-    console:
-      enabled: false

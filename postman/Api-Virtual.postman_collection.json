@@ -1,0 +1,4512 @@
+{
+	"info": {
+		"_postman_id": "579d2b85-95af-4aa1-a536-1c43e6c368c4",
+		"name": "Api-Virtual",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31616608"
+	},
+	"item": [
+		{
+			"name": "Athletes",
+			"item": [
+				{
+					"name": "GET /athletes/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /athletes/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /athletes/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /athletes listado OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData[0]).to.have.property(\"id\");",
+									" });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/athletes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /athletes OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 201', function () { pm.response.to.have.status(201); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Carlos\",\n  \"categoria\": \"Junior\",\n  \"trainer\": { \"id\": 2 }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/athletes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /athletes/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /athletes/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /athletes/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /athletes/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /athletes/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /athletes/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /athletes/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /athletes/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /athletes/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /athletes/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /athletes/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /athletes KO (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"categoria\": \"Junior\",\n  \"trainer\": { \"id\": 2 }\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/athletes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /athletes KO (500)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 500', function () { pm.response.to.have.status(500); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Carlos\",\n  \"categoria\": \"Junior\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/athletes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /athletes/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /athletes/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /athletes/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /athletes/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /athletes/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /athletes/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/athletes/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"athletes",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trainers",
+			"item": [
+				{
+					"name": "GET /trainers/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainers/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainers/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainers listado OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json();pm.expect(jsonData[0]).to.have.property(\"id\");",
+									" });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /trainers OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 201', function () { pm.response.to.have.status(201); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Juan\",\n  \"especialidad\": \"Boxeo\",\n  \"experiencia\": 5,\n  \"activo\": true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainers/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainers/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainers/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainers/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainers/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainers/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainers/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no necesario para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainers/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no necesario para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainers/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no necesario para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainers/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainers/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /trainers KO (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"especialidad\": \"Boxeo\",\n  \"experiencia\": 5,\n  \"activo\": true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /trainers KO (500)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 500', function () { pm.response.to.have.status(500); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Juan\",\n  \"especialidad\": \"Boxeo\",\n  \"experiencia\": 5\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainers/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainers/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainers/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainers/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainers/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainers/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('Body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainers/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainers",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "GET /events/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /events/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /events/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /events listado OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData[0]).to.have.property(\"id\");",
+									" });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /events OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 201', function () { pm.response.to.have.status(201); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Maratón Zaragoza\",\n  \"ubicacion\": \"Zaragoza\",\n  \"facility\": { \"id\": 1 }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /events/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /events/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /events/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /events/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /events/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /events/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /events/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /events/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /events/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /events/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /events/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /events KO (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ubicacion\": \"Zaragoza\",\n  \"facility\": { \"id\": 1 }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /events KO (500)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 500', function () { pm.response.to.have.status(500); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Evento sin facility\",\n  \"ubicacion\": \"Madrid\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /events/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /events/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /events/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /events/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /events/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /events/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/events/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Facilities",
+			"item": [
+				{
+					"name": "GET /facilities/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /facilities/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /facilities/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /facilities listado OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData[0]).to.have.property(\"id\");",
+									" });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /facilities OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 201', function () { pm.response.to.have.status(201); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Gimnasio Central\",\n  \"tipo\": \"Interior\",\n  \"capacidad\": 150\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/facilities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /facilities/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /facilities/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /facilities/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /facilities/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /facilities/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /facilities/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /facilities/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /facilities/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /facilities/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /facilities/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /facilities/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /facilities KO (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipo\": \"Interior\",\n  \"capacidad\": 150\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/facilities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /facilities KO (500)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 500', function () { pm.response.to.have.status(500); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Piscina Municipal\",\n  \"tipo\": \"Exterior\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/facilities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /facilities/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /facilities/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /facilities/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /facilities/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /facilities/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /facilities/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trainings",
+			"item": [
+				{
+					"name": "GET /trainings/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainings/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainings/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainings listado OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData[0]).to.have.property(\"id\");",
+									" });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /trainings OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 201', function () { pm.response.to.have.status(201); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoEntrenamiento\": \"Cardio\",\n  \"nivel\": \"Avanzado\",\n  \"duracion\": 60\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainings/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainings/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainings/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainings/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainings/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainings/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 200', function () { pm.response.to.have.status(200); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene id', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('id'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainings/1 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainings/2 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainings/3 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 204', function () { pm.response.to.have.status(204); });",
+									"pm.test('Content-Type no requerido para 204', function () { pm.expect(pm.response.headers.get('Content-Type')).to.be.undefined; });",
+									"pm.test('Body vacío', function () { pm.expect(pm.response.text()).to.eql(''); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainings/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /trainings/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /trainings KO (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nivel\": \"Intermedio\",\n  \"duracion\": 45\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /trainings KO (500)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Código de estado es 500', function () { pm.response.to.have.status(500); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoEntrenamiento\": \"Yoga\",\n  \"nivel\": \"Principiante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trainings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainings/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /trainings/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainings/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /trainings/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainings/abc KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 400', function () { pm.response.to.have.status(400); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/abc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /trainings/999 KO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Código de estado es 404', function () { pm.response.to.have.status(404); });",
+									"pm.test('Content-Type es application/json', function () { pm.response.to.have.header('Content-Type', 'application/json'); });",
+									"pm.test('El body contiene error', function () { var jsonData = pm.response.json(); pm.expect(jsonData).to.have.property('error'); });"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/trainings/999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trainings",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

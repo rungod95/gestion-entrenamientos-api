@@ -6,23 +6,24 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE:     ${MYSQL_DATABASE}
+      MYSQL_USER:         ${MYSQL_USER}
+      MYSQL_PASSWORD:     ${MYSQL_PASSWORD}
     ports:
       - "3308:${DB_PORT}"
     networks:
-      - entrenamiento-net
+      - apiman_default
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD","mysqladmin","ping","-h","localhost"]
       interval: 5s
       timeout: 5s
       retries: 10
       start_period: 15s
 
   api:
+    container_name: miapi
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -32,16 +33,19 @@ services:
       db:
         condition: service_healthy
     environment:
-      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:${DB_PORT}/${MYSQL_DATABASE}
-      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_PROFILES_ACTIVE:       ${SPRING_PROFILES_ACTIVE}
+      SPRING_DATASOURCE_URL:       jdbc:mysql://db:${DB_PORT}/${MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME:  ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD:  ${MYSQL_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     networks:
-      - entrenamiento-net
+      apiman_default:
+        aliases:
+          - miapi
 
 networks:
-  entrenamiento-net:
+  apiman_default:
+    external: true
 
 volumes:
   db_data:

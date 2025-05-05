@@ -1,8 +1,8 @@
 package com.example.Apitrain.controller;
 
+import com.example.Apitrain.config.TestSecurityConfig;
 import com.example.Apitrain.domain.Training;
 import com.example.Apitrain.service.TrainingService;
-import com.example.Apitrain.config.TestSecurityConfig;
 import com.example.Apitrain.Security.JwtTokenService;
 import com.example.Apitrain.exception.TrainingNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,7 +28,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
+@WebMvcTest(TrainingController.class)
 @AutoConfigureMockMvc
 @Import(TestSecurityConfig.class)
 @ActiveProfiles("test")

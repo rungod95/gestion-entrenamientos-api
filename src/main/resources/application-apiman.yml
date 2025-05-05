@@ -1,0 +1,24 @@
+spring:
+  config:
+    activate:
+      on-profile: apiman
+
+  datasource:
+    url: jdbc:mysql://db:3306/entrenamiento
+    username: usuario
+    password: usuario123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:/data.sql
+      continue-on-error: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+
+server:
+  port: 8081
