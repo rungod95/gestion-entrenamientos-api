@@ -1,0 +1,1375 @@
+{
+	"info": {
+		"_postman_id": "33659538-639a-4b82-b9e3-3a9cc0b2f358",
+		"name": "Apitrain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31616608"
+	},
+	"item": [
+		{
+			"name": "Athletes",
+			"item": [
+				{
+					"name": "Athletes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/athletes",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Athletes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Oscar Pérez\",\n  \"categoria\": \"Profesional\",\n  \"edad\": 30,\n  \"altura\": 1.75,\n  \"fechaRegistro\": \"2024-01-15\"\n  \n}\n"
+						},
+						"url": {
+							"raw": "{{base_url2}}/athletes",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/athletes/filter?nombre=Carlos&categoria=Profesional&edad=28",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Carlos"
+								},
+								{
+									"key": "categoria",
+									"value": "Profesional"
+								},
+								{
+									"key": "edad",
+									"value": "28"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\"id\": 2,\n    \"nombre\": \"Javier García\",\n    \"categoria\": \"Amateur\",\n    \"edad\": 24,\n    \"altura\": 1.9,\n    \"fechaRegistro\": \"2023-02-20\",\n    \"trainer\": null}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/athletes/2",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Jesús actualizado\",\n  \"edad\" : 35\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/athletes/3",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterJPQL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/athletes/filterByEdad?edadMin=25",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes",
+								"filterByEdad"
+							],
+							"query": [
+								{
+									"key": "edadMin",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/athletes/34",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"athletes",
+								"34"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trainers",
+			"item": [
+				{
+					"name": "Trainers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Juanito Garcías\",\n    \"especialidad\": \"Fuerza\",\n    \"experiencia\": 10,\n    \"fechaIngreso\": \"2015-05-20\",\n    \"activo\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/trainers",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trainers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Rafa Yuste\",\n    \"especialidad\": \"Cardio\",\n    \"experiencia\": 7,\n    \"fechaIngreso\": \"2015-05-20\",\n    \"activo\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/trainers/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trainers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url2}}/trainers",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/trainers/filter?nombre=Carmen&especialidad=Resistencia&experiencia=5",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Carmen"
+								},
+								{
+									"key": "especialidad",
+									"value": "Resistencia"
+								},
+								{
+									"key": "experiencia",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Juan Actualizado\",\n  \"especialidad\": \"Cardio\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/trainers/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterSQL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/trainers/filterByExperiencia?experiencia=5",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers",
+								"filterByExperiencia"
+							],
+							"query": [
+								{
+									"key": "experiencia",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/trainers/10",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainers",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trainings",
+			"item": [
+				{
+					"name": "trainings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url2}}/trainings",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "trainings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"tipo\": \"Cardio\",\n    \"nivel\": \"Intermedio\",\n    \"duracion\": 48,\n    \"fecha\": \"2024-01-15\",\n    \"completado\": false\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url2}}/trainings",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "trainings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipo\": \"Fuerza\",\n    \"nivel\": \"Avanzado\",\n    \"duracion\": 60,\n    \"fecha\": \"2024-01-20\",\n    \"completado\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url2}}/trainings/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer{{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url2}}/trainings/filter?tipo=Cardio&nivel=Intermedio&duracion=40",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "Cardio"
+								},
+								{
+									"key": "nivel",
+									"value": "Intermedio"
+								},
+								{
+									"key": "duracion",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterJPQL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/trainings/filterByNivelAndDuracion?nivel=Avanzado&duracion=30",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings",
+								"filterByNivelAndDuracion"
+							],
+							"query": [
+								{
+									"key": "nivel",
+									"value": "Avanzado"
+								},
+								{
+									"key": "duracion",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tipo\": \"Ciclismo\",\r\n  \"duracion\" : 35\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/trainings/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/trainings/139",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"trainings",
+								"139"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Maratón de Primavera\",\n    \"ubicacion\": \"Madrid\",\n    \"capacidad\": 500,\n    \"fechaEvento\": \"2024-05-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/events",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Maratón de Invierno\",\n    \"ubicacion\": \"Barcelona\",\n    \"capacidad\": 700,\n    \"fechaEvento\": \"2024-12-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/events/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url2}}/events",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/events/filter?nombre=Maratón&ubicacion=Madrid&capacidad=100",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Maratón"
+								},
+								{
+									"key": "ubicacion",
+									"value": "Madrid"
+								},
+								{
+									"key": "capacidad",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer{{jwt_token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"JJOO\",\n  \"ubicacion\": \"Zaragoza\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/events/3",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterJPQL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/events/filterByUbicacionAndCapacidad?ubicacion=Zaragoza&capacidad=50",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events",
+								"filterByUbicacionAndCapacidad"
+							],
+							"query": [
+								{
+									"key": "ubicacion",
+									"value": "Zaragoza"
+								},
+								{
+									"key": "capacidad",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterSQL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/events/filterByCapacidadAndUbicacion?capacidad=100&ubicacion=Zaragoza",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events",
+								"filterByCapacidadAndUbicacion"
+							],
+							"query": [
+								{
+									"key": "capacidad",
+									"value": "100"
+								},
+								{
+									"key": "ubicacion",
+									"value": "Zaragoza"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/events/76",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"events",
+								"76"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "facilities",
+			"item": [
+				{
+					"name": "Untitled",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Gimnasio Central\",\n    \"tipo\": \"Gimnasio\",\n    \"capacidad\": 150,\n    \"horario\": \"06:00 - 22:00\",\n    \"fechaApertura\": \"2015-09-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/facilities",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Untitled",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer{{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url2}}/facilities",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Untitled",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Gimnasio Golds\",\n    \"tipo\": \"Gimnasio\",\n    \"capacidad\": 20,\n    \"horario\": \"05:00 - 22:00\",\n    \"fechaApertura\": \"2021-10-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/facilities/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"facilities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer{{jwt_token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url2}}/facilities/filter?nombre=Gimnasio&tipo=Gimnasio&capacidad=50",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"facilities",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Gimnasio"
+								},
+								{
+									"key": "tipo",
+									"value": "Gimnasio"
+								},
+								{
+									"key": "capacidad",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Gimnasio Oeste\",\n  \"capacidad\": 600\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url2}}/facilities/1",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"facilities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterSQL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/facilities/filterByFechaApertura?fecha=2017-01-01",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"facilities",
+								"filterByFechaApertura"
+							],
+							"query": [
+								{
+									"key": "fecha",
+									"value": "2017-01-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url2}}/facilities/3",
+							"host": [
+								"{{base_url2}}"
+							],
+							"path": [
+								"facilities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.code === 200) {\r",
+							"    pm.environment.set(\"jwt_token\", pm.response.text());\r",
+							"    console.log(\"Token guardado: \", pm.environment.get(\"jwt_token\"));\r",
+							"} else {\r",
+							"    console.error(\"No se pudo guardar el token. Código de estado: \", pm.response.code);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url2}}/api/auth/login",
+					"host": [
+						"{{base_url2}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

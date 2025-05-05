@@ -41,7 +41,7 @@ public class Facility {
     private LocalDate fechaApertura;
 
     @OneToMany(mappedBy = "facility", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnoreProperties("facility")
     private List<Event> events;
 
 }

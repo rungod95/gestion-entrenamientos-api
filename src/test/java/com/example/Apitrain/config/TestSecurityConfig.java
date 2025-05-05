@@ -1,5 +1,6 @@
 package com.example.Apitrain.config;
 
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -10,17 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
-@Configuration
-@EnableWebSecurity
-@Profile("test")
+@TestConfiguration
 public class TestSecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain testFilterChain(HttpSecurity http) throws Exception {
+        System.out.println(">>> TestSecurityConfig ACTIVADO <<<");
         http
-                .csrf().disable()
-                .authorizeHttpRequests().anyRequest().permitAll(); // Permite todo para test
-
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
         return http.build();
     }
 

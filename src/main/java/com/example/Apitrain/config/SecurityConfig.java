@@ -14,18 +14,19 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@Profile("!test")  // Evita que se cargue en tests
+// Evita que se cargue en tests
+@Profile({"!test", "!apiman"}) // Evita que se cargue en el perfil apiman
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
+    @Bean(name = "noSecurityFilterChain")
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) //
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/events/test", "/api/auth/login", "/api/auth/register", "/trainings/**", "/athletes/**").permitAll()
+                        .requestMatchers("/events/test", "/api/auth/login", "/api/auth/register", "/trainings/**", "/athletes/**", "/events/**","/facilities/**","trainers/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll() // Permitir acceso a H2 Console
-                        .requestMatchers( "/events/**","/facilities/**","trainers/**").authenticated() // Requiere autenticación para estas rutas
+
                         .anyRequest().authenticated() // Requiere autenticación para otras rutas
                 )
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())) // Deshabilitar protección contra clickjacking

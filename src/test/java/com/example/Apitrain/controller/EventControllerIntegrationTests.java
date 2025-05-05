@@ -1,6 +1,7 @@
 package com.example.Apitrain.controller;
 
 import com.example.Apitrain.Security.JwtTokenService;
+import com.example.Apitrain.config.TestSecurityConfig;
 import com.example.Apitrain.domain.Event;
 import com.example.Apitrain.domain.Facility;
 import com.example.Apitrain.repository.EventRepository;
@@ -10,8 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+
 @ActiveProfiles("test")
 public class EventControllerIntegrationTests {
 
