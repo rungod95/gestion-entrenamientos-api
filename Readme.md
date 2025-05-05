@@ -181,9 +181,7 @@ Asegúrate de apuntar tus tests de integración a `http://localhost:8082`.
 ### Newman (Postman)
 
 ```bash
-newman run postman_collection.json \
-    --env-var "baseUrl=http://localhost:8081" \
-    --delay-request 200
+newman run postman_collection.json 
 ```
 
 ---
