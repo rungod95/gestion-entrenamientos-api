@@ -44,7 +44,7 @@
 
    ```bash
    git clone git@github.com:rungod95/gestion-entrenamientos-api.git
-   cd apitrain
+   cd gestion-entrenamientos-api
    ```
    
 2. 📦 Empaquetado y Dockerfile multietapa
