@@ -43,7 +43,7 @@
 1. Clona el repositorio:
 
    ```bash
-   git clone git@github.com:rungod95/apitrain.git
+   git clone git@github.com:rungod95/gestion-entrenamientos-api.git
    cd apitrain
    ```
    
